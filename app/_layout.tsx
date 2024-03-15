@@ -1,16 +1,16 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native';
+// import {
+//   DarkTheme,
+//   DefaultTheme,
+//   ThemeProvider,
+// } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
-
-import { config } from '../gluestack-ui.config';
-import { GluestackUIProvider } from '@gluestack-ui/themed';
+// import { config } from '../gluestack-ui.config';
+// import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { NativewindUIProvider} from '../components/nativewind-ui-provider'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -53,7 +53,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <GluestackUIProvider config={config}>
+    <NativewindUIProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -62,6 +62,6 @@ function RootLayoutNav() {
         <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
         <Stack.Screen name="create-password" options={{ headerShown: false }} />
       </Stack>
-    </GluestackUIProvider>
+    </NativewindUIProvider>
   );
 }

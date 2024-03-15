@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlHelperText,
+  FormControlHelper
+} from '@gluestack-ui/themed';
+import {
   VStack,
   Box,
   HStack,
@@ -8,48 +16,25 @@ import {
   Button,
   Image,
   Center,
-  ArrowLeftIcon,
-  FormControl,
   Heading,
-  FormControlHelperText,
-  EyeIcon,
-  EyeOffIcon,
   ButtonText,
   Input,
   useToast,
   Toast,
   InputField,
   ToastTitle,
-  FormControlHelper,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
   InputIcon,
   InputSlot,
-  ScrollView,
-} from '@gluestack-ui/themed';
-import { AlertTriangle } from 'lucide-react-native';
-
+} from '../../components/ui';
+import { AlertTriangle, ArrowLeftIcon, EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
-import { Keyboard } from 'react-native';
+import { Keyboard ,ScrollView} from 'react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import GuestLayout from '../../layouts/GuestLayout';
-
-import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 import { router } from 'expo-router';
 
-import { styled } from '@gluestack-style/react';
-
-const StyledImage = styled(Image, {
-  props: {
-    style: {
-      height: 40,
-      width: 320,
-    },
-  },
-});
 const createPasswordSchema = z.object({
   password: z
     .string()
@@ -140,19 +125,16 @@ export default function CreatePassword() {
 
   function Header() {
     return (
-      <HStack space="md" px="$3" my="$4.5" alignItems="center">
+      <HStack space="md" className='px-3 my-4 items-center'>
         <StyledExpoRouterLink href="..">
           <Icon
             size="md"
             as={ArrowLeftIcon}
-            color="$textLight50"
-            sx={{ _dark: { color: '$textDark50' } }}
+            className='color-typography-50 dark:color-typography-50'
           />
         </StyledExpoRouterLink>
         <Text
-          color="$textLight50"
-          fontSize="$lg"
-          sx={{ _dark: { color: '$textDark50' } }}
+          className='color-typography-50 text-lg dark:color-typography-50'
         >
           Create Password
         </Text>
@@ -164,14 +146,11 @@ export default function CreatePassword() {
     return (
       <VStack space="md">
         <Heading
-          fontSize="$xl"
-          sx={{
-            '@md': { fontSize: '$2xl' },
-          }}
+          className='text-xl md:text-2xl'
         >
           Create new password
         </Heading>
-        <Text fontSize="$sm">
+        <Text className='text-sm'>
           Your new password must be different from previous used passwords and
           must be of at least 8 characters.
         </Text>
@@ -182,15 +161,10 @@ export default function CreatePassword() {
   function WebSideContainer() {
     return (
       <Center
-        flex={1}
-        bg="$primary500"
-        sx={{
-          _dark: { bg: '$primary500' },
-        }}
+        className='flex-1 bg-primary-500 dark:bg-primary-500'
       >
-        <StyledImage
-          w="$80"
-          h="$10"
+        <Image
+          className='h-10 w-80'
           alt="Gluestack-ui pro"
           resizeMode="contain"
           source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
@@ -201,18 +175,12 @@ export default function CreatePassword() {
   return (
     <GuestLayout>
       <Box
-        sx={{
-          '@md': { display: 'none' },
-        }}
+        className='md:hidden'
       >
         <Header />
       </Box>
       <Box
-        display="none"
-        sx={{
-          '@md': { display: 'flex' },
-        }}
-        flex={1}
+        className='flex-1 md:flex hidden'
       >
         <WebSideContainer />
       </Box>
@@ -220,31 +188,20 @@ export default function CreatePassword() {
         contentContainerStyle={{
           flexGrow: 1,
         }}
-        flex={1}
+        style={{
+          flex:1
+        }}
         bounces={false}
       >
         <Box
-          bg="$backgroundLight0"
-          pt="$8"
-          pb="$4"
-          px="$4"
-          sx={{
-            '@md': {
-              p: '$8',
-            },
-            '_dark': { bg: '$backgroundDark800' },
-          }}
-          flex={1}
+          className='bg-background-0 pt-8 pb-4 px-4 md:p-8 dark:bg-background-800'
         >
           <ScreenText />
           <VStack
-            mt="$7"
             space="md"
-            sx={{
-              '@md': { mt: '$8' },
-            }}
+            className='mt-7 md:mt-8'
           >
-            <Box sx={{ '@base': { w: '$full' }, '@md': { width: '$80' } }}>
+            <Box  className='w-full md:w-80'>
               <FormControl isInvalid={!!errors.password} isRequired={true}>
                 <Controller
                   defaultValue=""
@@ -265,7 +222,6 @@ export default function CreatePassword() {
                   render={({ field: { onChange, onBlur, value } }) => (
                     <Input>
                       <InputField
-                        fontSize="$sm"
                         placeholder="Password"
                         value={value}
                         onChangeText={onChange}
@@ -273,8 +229,9 @@ export default function CreatePassword() {
                         onSubmitEditing={handleKeyPress}
                         returnKeyType="done"
                         type={showPassword ? 'text' : 'password'}
+                        className='text-sm'
                       />
-                      <InputSlot onPress={handleState} mr="$2">
+                      <InputSlot onPress={handleState} className='mr-2'>
                         <InputIcon
                           as={showPassword ? EyeIcon : EyeOffIcon}
                         />
@@ -294,12 +251,8 @@ export default function CreatePassword() {
                 <FormControlHelper></FormControlHelper>
               </FormControl>
             </Box>
-
             <Box
-              sx={{
-                '@base': { w: '$full' },
-                '@md': { width: '$80' },
-              }}
+              className='w-full md:w-80'
             >
               <FormControl
                 isInvalid={!!errors.confirmpassword}
@@ -324,7 +277,6 @@ export default function CreatePassword() {
                   render={({ field: { onChange, onBlur, value } }) => (
                     <Input>
                       <InputField
-                        fontSize="$sm"
                         placeholder="Confirm Password"
                         value={value}
                         onChangeText={onChange}
@@ -332,8 +284,9 @@ export default function CreatePassword() {
                         onSubmitEditing={handleKeyPress}
                         returnKeyType="done"
                         type={showConfirmPassword ? 'text' : 'password'}
+                        className='text-sm'
                       />
-                      <InputSlot onPress={handleConfirmPasswordState} mr="$2">
+                      <InputSlot onPress={handleConfirmPasswordState} className='mr-2'>
                         <InputIcon
                           as={showConfirmPassword ? EyeIcon : EyeOffIcon}
                         />
@@ -361,11 +314,10 @@ export default function CreatePassword() {
           <Button
             variant="solid"
             size="lg"
-            mt="auto"
-            sx={{ '@md': { mt: '$40' } }}
             onPress={handleSubmit(onSubmit)}
+            className='mt-auto md:mt-40'
           >
-            <ButtonText fontSize="$sm">UPDATE PASSWORD</ButtonText>
+            <ButtonText className='text-sm'>UPDATE PASSWORD</ButtonText>
           </Button>
         </Box>
       </ScrollView>

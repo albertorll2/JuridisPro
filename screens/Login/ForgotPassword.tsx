@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import {
-  Button,
   FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+} from '@gluestack-ui/themed';
+import {
+  Button,
   HStack,
   Input,
   Text,
@@ -12,25 +17,18 @@ import {
   Icon,
   ToastTitle,
   InputField,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
   ButtonText,
   Image,
-  ArrowLeftIcon,
   Heading,
   Center,
-} from '@gluestack-ui/themed';
+} from '../../components/ui';
 import GuestLayout from '../../layouts/GuestLayout';
-
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Keyboard } from 'react-native';
-
-import { AlertTriangle } from 'lucide-react-native';
-
-import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import { AlertTriangle,ArrowLeftIcon } from 'lucide-react-native';
+import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 import { router } from 'expo-router';
 
 const forgotPasswordSchema = z.object({
@@ -40,19 +38,18 @@ type SignUpSchemaType = z.infer<typeof forgotPasswordSchema>;
 
 function Header() {
   return (
-    <HStack space="md" px="$3" py="$4.5" alignItems="center">
+    <HStack space="md" className='px-3 py-4 items-center'>
       <StyledExpoRouterLink href="..">
         <Icon
           size="md"
           as={ArrowLeftIcon}
-          color="$textLight50"
-          sx={{ _dark: { color: '$textDark50' } }}
+          // color="$textLight50"
+          // sx={{ _dark: { color: '$textDark50' } }}
+          className='color-typography-50 dark:color-typography-950'
         />
       </StyledExpoRouterLink>
       <Text
-        color="$textLight50"
-        fontSize="$lg"
-        sx={{ _dark: { color: '$textDark50' } }}
+        className='color-typography-50 text-lg dark:color-typography-50'
       >
         Forgot Password
       </Text>
@@ -63,25 +60,13 @@ function Header() {
 function SideContainerWeb() {
   return (
     <Center
-      sx={{
-        '@base': {
-          _light: { bg: '$backgroundLight0' },
-          _dark: { bg: '$backgroundDark800' },
-        },
-        '@md': {
-          flex: 1,
-          _light: { bg: '$primary500' },
-          _dark: { bg: '$primary500' },
-          py: '$48',
-        },
-      }}
+      className='bg-background-0 dark:bg-background-800 md:bg-primary-500 md:dark:bg-primary-500 md:py-$48'
     >
       <Image
         resizeMode="contain"
-        w="$200"
-        h="$40"
         source={require('./assets/images/forgotPassword_web_dark.png')}
         alt="Alternate Text"
+        className='w-[200px] h-40'
       />
     </Center>
   );
@@ -90,50 +75,17 @@ function SideContainerWeb() {
 function MobileScreenImage() {
   return (
     <Center
-      px="$4"
-      mb={-0.5}
-      sx={{
-        '@base': {
-          _light: { bg: '$backgroundLight0' },
-          _dark: { bg: '$backgroundDark800' },
-        },
-        '@md': {
-          py: '$48',
-          px: '$12',
-          _light: { bg: '$primary500' },
-          _dark: { bg: '$primary700' },
-        },
-      }}
+      className='px-4 -mb-0.5 bg-background-0 dark:bg-background-800 md:py-48 md:px-12 md:bg-primary-500 md:dark:bg-primary-700'
     >
       <Image
-        sx={{
-          '@base': {
-            _light: { display: 'flex' },
-            _dark: { display: 'none' },
-            mt: '$12',
-          },
-          '@md': {
-            _light: { display: 'none' },
-            _dark: { display: 'none' },
-          },
-        }}
+        className='flex dark:hidden md:hidden md:dark:hidden h-40 w-48'
         source={require('./assets/images/forgotPassword_mobile_light.png')}
-        h="$40"
-        w="$48"
         resizeMode="contain"
         alignSelf="center"
       />
       <Image
-        sx={{
-          '@base': {
-            _light: { display: 'none' },
-            _dark: { display: 'flex' },
-          },
-          '@md': { display: 'none' },
-        }}
+        className='h-40 w-48 hidden dark:flex md:hidden'
         source={require('./assets/images/forgotPassword_mobile_dark.png')}
-        h="$40"
-        w="$48"
         resizeMode="contain"
         alignSelf="center"
       />
@@ -180,69 +132,36 @@ export default function ForgotPassword() {
   return (
     <GuestLayout>
       <VStack
-        sx={{
-          '@md': { flexDirection: 'row' },
-          '_dark': { bg: '$backgroundDark900' },
-        }}
-        flex={1}
-        bg="$primary500"
+        className='bg-primary-500 md:flex-row dark:bg-background-900 flex-1'
       >
-        <Box sx={{ '@md': { display: 'none' } }}>
+        <Box className='md:hidden'>
           <Header />
           <MobileScreenImage />
         </Box>
-        <Box sx={{ '@md': { display: 'flex' } }} display="none" flex={1}>
+        <Box className='md:flex hidden flex-1'>
           <SideContainerWeb />
         </Box>
         <Box
-          maxWidth="$508"
-          pt="$0"
-          pb="$8"
-          px="$4"
-          bg="$backgroundLight0"
-          flex={1}
-          sx={{
-            '@md': {
-              pt: '$8',
-              px: '$8',
-            },
-            '_dark': { bg: '$backgroundDark800' },
-          }}
+          className='max-w-[508px] pt-0 pb-8 px-4 bg-background-0 flex-1 md:pt-8 md:px-8 dark:bg-background-800'
         >
           <VStack
             space="md"
-            alignItems="center"
-            sx={{ '@md': { alignItems: 'flex-start' } }}
+            className='items-center md:items-start'
           >
             <Heading
-              fontSize="$xl"
-              textAlign="center"
-              sx={{
-                '@md': {
-                  textAlign: 'left',
-                  fontSize: '$2xl',
-                },
-              }}
+              className='text-xl text-center md:text-left md:text-2xl'
             >
               Forgot Password?
             </Heading>
             <Text
-              fontSize="$sm"
-              fontWeight="normal"
-              textAlign="center"
-              sx={{
-                '@md': {
-                  textAlign: 'left',
-                },
-              }}
+              className='text-sm font-normal text-center md:text-left'
             >
               Not to worry! Enter email address associated with your account and
               we'll send a link to reset your password.
             </Text>
           </VStack>
-
           <FormControl
-            my="$8"
+            my="$8" 
             isInvalid={(!!errors.email || isEmailFocused) && !!errors.email}
             isRequired={true}
           >
@@ -265,7 +184,6 @@ export default function ForgotPassword() {
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input>
                   <InputField
-                    fontSize="$sm"
                     placeholder="Email"
                     type="text"
                     value={value}
@@ -273,6 +191,7 @@ export default function ForgotPassword() {
                     onBlur={onBlur}
                     onSubmitEditing={handleKeyPress}
                     returnKeyType="done"
+                    className='text-sm'
                   />
                 </Input>
               )}
@@ -285,7 +204,7 @@ export default function ForgotPassword() {
             </FormControlError>
           </FormControl>
           <Button variant="solid" size="lg" onPress={handleSubmit(onSubmit)}>
-            <ButtonText fontSize="$sm">Send OTP</ButtonText>
+            <ButtonText className='text-sm'>Send OTP</ButtonText>
           </Button>
         </Box>
       </VStack>

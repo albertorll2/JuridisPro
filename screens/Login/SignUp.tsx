@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+} from '@gluestack-ui/themed';
+import {
   Button,
   Checkbox,
   Image,
@@ -10,15 +16,10 @@ import {
   Divider,
   Icon,
   Center,
-  FormControl,
   Box,
   LinkText,
   Input,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
   InputIcon,
-  FormControlHelper,
   Toast,
   ToastTitle,
   useToast,
@@ -26,37 +27,31 @@ import {
   CheckboxIndicator,
   CheckboxIcon,
   CheckboxLabel,
-  CheckIcon,
   ButtonText,
   Heading,
-  ArrowLeftIcon,
   InputField,
   InputSlot,
-} from '@gluestack-ui/themed';
-
+} from '../../components/ui';
 import { Controller, useForm } from 'react-hook-form';
-import { AlertTriangle, EyeIcon, EyeOffIcon } from 'lucide-react-native';
+import { AlertTriangle, EyeIcon, EyeOffIcon , ArrowLeftIcon, CheckIcon} from 'lucide-react-native';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';
-
 import { FacebookIcon, GoogleIcon } from './assets/Icons/Social';
-
 import GuestLayout from '../../layouts/GuestLayout';
-
-import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 import { router } from 'expo-router';
 
-import { styled } from '@gluestack-style/react';
+// import { styled } from '@gluestack-style/react';
 
-const StyledImage = styled(Image, {
-  props: {
-    style: {
-      height: 40,
-      width: 320,
-    },
-  },
-});
+// const StyledImage = styled(Image, {
+//   props: {
+//     style: {
+//       height: 40,
+//       width: 320,
+//     },
+//   },
+// });
 
 const signUpSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -88,20 +83,22 @@ type SignUpSchemaType = z.infer<typeof signUpSchema>;
 function SideContainerWeb() {
   return (
     <Center
-      bg="$primary500"
-      flex={1}
-      sx={{
-        _dark: {
-          bg: '$primary500',
-        },
-      }}
+      // bg="$primary500"
+      // flex={1}
+      // sx={{
+      //   _dark: {
+      //     bg: '$primary500',
+      //   },
+      // }}
+      className='bg-primary-500 flex-1 dark:bg-primary-500'
     >
-      <StyledImage
-        h="$10"
-        w="$80"
+      <Image
+        // h="$10"
+        // w="$80"
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+        className='h-10 w-80'
       />
     </Center>
   );
@@ -109,36 +106,38 @@ function SideContainerWeb() {
 
 function MobileHeader() {
   return (
-    <VStack px="$3" mt="$4.5" mb="$5" space="md">
-      <HStack space="md" alignItems="center">
+    <VStack  space="md" className='px-3 mt-4 mb-5'>
+      <HStack space="md" className='items-center'>
         <StyledExpoRouterLink href="..">
           <Icon
             as={ArrowLeftIcon}
-            color="$textLight50"
-            sx={{ _dark: { color: '$textDark50' } }}
+            // color="$textLight50"
+            // sx={{ _dark: { color: '$textDark50' } }}
+            className='color-typography-50 dark:typography-950'
           />
         </StyledExpoRouterLink>
-
         <Text
-          color="$textLight50"
-          sx={{ _dark: { color: '$textDark50' } }}
-          fontSize="$lg"
+          // color="$textLight50"
+          // sx={{ _dark: { color: '$textDark50' } }}
+          // fontSize="$lg"
+          className='text-lg color-typography-50 dark:color-typography-950'
         >
           Sign Up
         </Text>
       </HStack>
-      <VStack space="xs" ml="$1" my="$4">
-        <Heading color="$textLight50" sx={{ _dark: { color: '$textDark50' } }}>
+      <VStack space="xs" className='ml-1 my-4'>
+        <Heading  className='color-typography-50 dark:color-typography-950'>
           Welcome
         </Heading>
         <Text
-          color="$primary300"
-          fontSize="$md"
-          sx={{
-            _dark: {
-              color: '$textDark400',
-            },
-          }}
+          // color="$primary300"
+          // fontSize="$md"
+          // sx={{
+          //   _dark: {
+          //     color: '$textDark400',
+          //   },
+          // }}
+          className='color-primary-300 text-lg dark:color-typography-300'
         >
           Sign up to continue
         </Text>
@@ -210,7 +209,7 @@ const SignUpForm = () => {
 
   return (
     <>
-      <VStack justifyContent="space-between">
+      <VStack  className='justify-between'>
         <FormControl
           isInvalid={(!!errors.email || isEmailFocused) && !!errors.email}
           isRequired={true}
@@ -233,13 +232,13 @@ const SignUpForm = () => {
               <Input>
                 <InputField
                   placeholder="Email"
-                  fontSize="$sm"
                   type="text"
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
+                  className='text-sm '
                 />
               </Input>
             )}
@@ -272,7 +271,6 @@ const SignUpForm = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input>
                 <InputField
-                  fontSize="$sm"
                   placeholder="Password"
                   value={value}
                   onChangeText={onChange}
@@ -280,8 +278,9 @@ const SignUpForm = () => {
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
                   type={showPassword ? 'text' : 'password'}
+                  className='text-sm'
                 />
-                <InputSlot onPress={handleState} pr="$3">
+                <InputSlot onPress={handleState}  className='pr-3'>
                   <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
@@ -317,15 +316,15 @@ const SignUpForm = () => {
               <Input>
                 <InputField
                   placeholder="Confirm Password"
-                  fontSize="$sm"
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
                   type={showConfirmPassword ? 'text' : 'password'}
+                  className='text-sm'
                 />
-                <InputSlot onPress={handleConfirmPwState} pr="$3">
+                <InputSlot onPress={handleConfirmPwState}  className='pr-3'>
                   <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
@@ -350,29 +349,31 @@ const SignUpForm = () => {
             isChecked={value}
             onChange={onChange}
             alignSelf="flex-start"
-            mt="$5"
+            className='mt-5'
           >
-            <CheckboxIndicator mr="$2">
+            <CheckboxIndicator  className='mr-2'>
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
             <CheckboxLabel
-              sx={{
-                _text: {
-                  fontSize: '$sm',
-                },
-              }}
+              // sx={{
+              //   _text: {
+              //     fontSize: '$sm',
+              //   },
+              // }}
+              className='text-sm'
             >
               I accept the{' '}
               <Link>
                 <LinkText
-                  sx={{
-                    _ios: {
-                      marginTop: '$0.5',
-                    },
-                    _android: {
-                      marginTop: '$0.5',
-                    },
-                  }}
+                  // sx={{
+                  //   _ios: {
+                  //     marginTop: '$0.5',
+                  //   },
+                  //   _android: {
+                  //     marginTop: '$0.5',
+                  //   },
+                  // }}
+                  className='mt-0.5 web:mt-0'
                 >
                   Terms of Use
                 </LinkText>
@@ -380,14 +381,16 @@ const SignUpForm = () => {
               &{' '}
               <Link>
                 <LinkText
-                  sx={{
-                    _ios: {
-                      marginTop: '$0.5',
-                    },
-                    _android: {
-                      marginTop: '$0.5',
-                    },
-                  }}
+                  // sx={{
+                  //   _ios: {
+                  //     marginTop: '$0.5',
+                  //   },
+                  //   _android: {
+                  //     marginTop: '$0.5',
+                  //   },
+                  // }}
+                  className='mt-0.5 web:mt-0'
+
                 >
                   Privacy Policy
                 </LinkText>
@@ -397,12 +400,13 @@ const SignUpForm = () => {
         )}
       />
       <Button
-        mt="$5"
+        // mt="$5"
         variant="solid"
         size="lg"
         onPress={handleSubmit(onSubmit)}
+        className='mt-5'
       >
-        <ButtonText fontSize="$sm">SIGN UP</ButtonText>
+        <ButtonText className='text-sm'>SIGN UP</ButtonText>
       </Button>
     </>
   );
@@ -412,78 +416,57 @@ function SignUpFormComponent() {
   return (
     <>
       <Box
-        sx={{
-          '@md': {
-            display: 'none',
-          },
-        }}
+        className='md:hidden'
       >
         <MobileHeader />
       </Box>
 
       <Box
-        flex={1}
-        bg="$backgroundLight0"
-        sx={{
-          '@md': {
-            px: '$8',
-            borderTopLeftRadius: '$none',
-            borderTopRightRadius: '$none',
-            borderBottomRightRadius: '$none',
-          },
-          '_dark': {
-            bg: '$backgroundDark800',
-          },
-        }}
-        px="$4"
-        py="$8"
-        justifyContent="space-between"
-        borderTopLeftRadius="$2xl"
-        borderTopRightRadius="$2xl"
-        borderBottomRightRadius="$none"
+        // flex={1}
+        // bg="$backgroundLight0"
+        // sx={{
+        //   '@md': {
+        //     px: '$8',
+        //     borderTopLeftRadius: '$none',
+        //     borderTopRightRadius: '$none',
+        //     borderBottomRightRadius: '$none',
+        //   },
+        //   '_dark': {
+        //     bg: '$backgroundDark800',
+        //   },
+        // }}
+        // px="$4"
+        // py="$8"
+        // justifyContent="space-between"
+        // borderTopLeftRadius="$2xl"
+        // borderTopRightRadius="$2xl"
+        // borderBottomRightRadius="$none"
+        className='flex-1 bg-background-0 md:px-8 md:border-b-0 md:border-l-0 md:border-r-0 dark:bg-background-800 px-4 py-8 justify-between  border-l-8 border-r-8'
       >
         <Heading
-          display="none"
-          mb="$8"
-          sx={{
-            '@md': { display: 'flex', fontSize: '$2xl' },
-          }}
+          className='hidden mb-8 md:flex md:text-2xl'
         >
           Sign up to continue
         </Heading>
 
         <SignUpForm />
 
-        <HStack my="$4" space="md" alignItems="center" justifyContent="center">
+        <HStack space="md" className='my-4 items-center justify-center'>
           <Divider
-            w="$2/6"
-            bg="$backgroundLight200"
-            sx={{ _dark: { bg: '$backgroundDark700' } }}
+            className='w-2/6 bg-background-200 dark:bg-background-700'
           />
           <Text
-            fontWeight="$medium"
-            color="$textLight400"
-            sx={{ _dark: { color: '$textDark300' } }}
+            className='font-medium color-typography-400 dark:color-typography-300'
           >
             or
           </Text>
           <Divider
-            w="$2/6"
-            bg="$backgroundLight200"
-            sx={{ _dark: { bg: '$backgroundDark700' } }}
+            className='w-2/6 bg-background-200 dark:bg-background-700'
           />
         </HStack>
         <HStack
-          sx={{
-            '@md': {
-              mt: '$4',
-            },
-          }}
-          mt="$6"
-          mb="$9"
-          alignItems="center"
-          justifyContent="center"
           space="lg"
+          className='md:mt-4 mt-6 mb-9 items-center justify-center'
         >
           <Link href="">
             <Button action="secondary" variant="link" onPress={() => {}}>
@@ -492,31 +475,23 @@ function SignUpFormComponent() {
           </Link>
           <Link href="">
             <Button action="secondary" variant="link" onPress={() => {}}>
-              <ButtonIcon as={GoogleIcon} size="md" />
+              <ButtonIcon as={GoogleIcon}  className='size-4' />
             </Button>
           </Link>
         </HStack>
 
         <HStack
           space="xs"
-          alignItems="center"
-          justifyContent="center"
-          mt="auto"
+          className='items-center justify-center mt-auto'
         >
           <Text
-            color="$textLight500"
-            sx={{
-              _dark: {
-                color: '$textDark400',
-              },
-            }}
-            fontSize="$sm"
+            className='text-sm color-typography-500 dark:color-typography-400'
           >
             Already have an account?
           </Text>
 
           <StyledExpoRouterLink href="/login">
-            <LinkText fontSize="$sm">Sign In</LinkText>
+            <LinkText  className='text-sm'>Sign In</LinkText>
           </StyledExpoRouterLink>
         </HStack>
       </Box>
@@ -528,17 +503,11 @@ export default function SignUp() {
   return (
     <GuestLayout>
       <Box
-        sx={{
-          '@md': {
-            display: 'flex',
-          },
-        }}
-        flex={1}
-        display="none"
+        className='md:flex hidden flex-1'
       >
         <SideContainerWeb />
       </Box>
-      <Box flex={1}>
+      <Box  className='flex-1'>
         <SignUpFormComponent />
       </Box>
     </GuestLayout>

@@ -8,41 +8,28 @@ import {
   Button,
   Image,
   Center,
-  FormControl,
   Input,
   LinkText,
-  FormControlHelperText,
   InputField,
   ButtonText,
-  ArrowLeftIcon,
+  useToast,
+  Heading,
+} from '../../components/ui';
+import {
+  FormControl,
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-  Toast,
-  ToastTitle,
-  useToast,
-  Heading,
+  FormControlHelperText
 } from '@gluestack-ui/themed';
-
 import GuestLayout from '../../layouts/GuestLayout';
 import { z } from 'zod';
-import { AlertTriangle } from 'lucide-react-native';
+import { AlertTriangle,ArrowLeftIcon } from 'lucide-react-native';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Keyboard } from 'react-native';
-import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 import { router } from 'expo-router';
 
-import { styled } from '@gluestack-style/react';
-
-const StyledImage = styled(Image, {
-  props: {
-    style: {
-      height: 40,
-      width: 320,
-    },
-  },
-});
 interface PinInputProps {
   refList: React.RefObject<HTMLInputElement>[];
   setInputFocus: React.Dispatch<React.SetStateAction<number>>;
@@ -61,32 +48,12 @@ function PinInput({
   return (
     <HStack space="xs">
       {Array.from({ length: 6 }, (_, index) => (
-        <Input key={index} variant="outline" w="$100/7" size="md">
+        <Input key={index} variant="outline" size="md" className='w-14'>
           <InputField
             //@ts-ignore
             ref={refList[index]}
             placeholder=""
-            borderBottomColor={
-              focusedIndex === index ? '$primary900' : '$borderLight500'
-            }
-            bg="$backgroundLight0"
-            sx={{
-              '@md': {
-                w: '$1/6',
-              },
-              '@lg': {
-                w: '$25/2',
-              },
-              '_dark': {
-                bgColor: '$backgroundDark400',
-                borderBottomColor:
-                  focusedIndex === index ? '$primary500' : '$borderDark100',
-              },
-            }}
-            w="$100/7"
-            textAlign="center"
             maxLength={1}
-            borderBottomWidth="$2"
             onChangeText={(text) => {
               if (text.length === 1 && index < 5) {
                 refList[index + 1].current?.focus();
@@ -102,7 +69,7 @@ function PinInput({
               };
               updateOtpAtIndex(index, text);
             }}
-            rounded="$xs"
+            className={`${focusedIndex===index?'border-b-primary-900':'border-b-background-500'} bg-background-0 md:w-1/6 lg:w-12 dark:bg-background-400 ${focusedIndex===index?'border-b-primary-500':'border-b-background-100'} w-14 text-center border-b-2 rounded-sm`}
           />
         </Input>
       ))}
@@ -112,18 +79,15 @@ function PinInput({
 
 function Header() {
   return (
-    <HStack space="xs" px="$3" my="$4.5" alignItems="center">
+    <HStack space="xs" className='px-3 my-4 items-center'>
       <StyledExpoRouterLink href="/">
         <Icon
           as={ArrowLeftIcon}
-          color="$textLight50"
-          sx={{ _dark: { color: '$textDark50' } }}
+          className='color-typography-50 dark:color-typography-50'
         />
       </StyledExpoRouterLink>
       <Text
-        color="$textLight50"
-        fontSize="$lg"
-        sx={{ _dark: { color: '$textDark50' } }}
+        className='color-typography-50 text-lg dark:color-typography-50'
       >
         OTP Verification
       </Text>
@@ -133,20 +97,13 @@ function Header() {
 function SideContainerWeb() {
   return (
     <Center
-      flex={1}
-      bg="$primary500"
-      sx={{
-        _dark: {
-          bg: '$primary500',
-        },
-      }}
+      className='flex-1 bg-primary-500 dark:bg-primary-500'
     >
-      <StyledImage
-        h="$10"
-        w="$80"
+      <Image
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+        className='h-10 w-80'
       />
     </Center>
   );
@@ -155,36 +112,17 @@ function MainText() {
   return (
     <VStack space="xs">
       <Heading
-        fontSize="$xl"
-        sx={{
-          '@md': { fontSize: '$2xl', pb: '$4' },
-        }}
+        className='text-xl md:text-2xl md:pb-4'
       >
         Enter OTP
       </Heading>
-      <HStack space="xs" alignItems="center">
+      <HStack space="xs" className='items-center'>
         <Text
-          color="$textLight800"
-          sx={{
-            '@md': {
-              pb: '$12',
-            },
-            '_dark': {
-              color: '$textDark400',
-            },
-          }}
-          fontSize="$sm"
+          className='text-sm color-typography-800 md:pb-12 dark:color-typography-400'
         >
           We have sent the OTP code to
           <Text
-            fontWeight="$bold"
-            color="$textLight800"
-            sx={{
-              _dark: {
-                color: '$textDark400',
-              },
-            }}
-            fontSize="$sm"
+            className='font-bold color-typography-800 dark:color-typography-400 text-sm'
           >
             {''} 87******47
           </Text>
@@ -196,49 +134,30 @@ function MainText() {
 function AccountLink() {
   return (
     <HStack
-      sx={{
-        '@md': {
-          mt: '$40',
-        },
-      }}
-      mt="auto"
       space="xs"
-      alignItems="center"
-      justifyContent="center"
+      className='md:mt-40 mt-auto items-center justify-center'
     >
       <Text
-        color="$textLight800"
-        sx={{
-          _dark: {
-            color: '$textDark400',
-          },
-        }}
-        fontSize="$sm"
+        className='color-typography-800 dark:color-typography-400 text-sm'
       >
         Already have an account?
       </Text>
       <StyledExpoRouterLink href="/login">
-        <LinkText fontSize="$sm">Sign In</LinkText>
+        <LinkText  className='text-sm'>Sign In</LinkText>
       </StyledExpoRouterLink>
     </HStack>
   );
 }
 function ResendLink() {
   return (
-    <HStack py="$8">
+    <HStack className='py-8'>
       <Text
-        color="$textLight800"
-        sx={{
-          _dark: {
-            color: '$textDark400',
-          },
-        }}
-        fontSize="$sm"
+        className='color-typography-800 dark:color-typography-400 text-sm'
       >
         Didn't receive the OTP?
       </Text>
       <StyledExpoRouterLink href="/verify-otp">
-        <LinkText fontSize="$sm">RESEND OTP</LinkText>
+        <LinkText  className='text-sm'>RESEND OTP</LinkText>
       </StyledExpoRouterLink>
     </HStack>
   );
@@ -316,43 +235,20 @@ export default function OtpVerification() {
   return (
     <GuestLayout>
       <Box
-        sx={{
-          '@md': {
-            display: 'none',
-          },
-        }}
-        display="flex"
+        className='flex md:hidden'
       >
         <Header />
       </Box>
       <Box
-        sx={{
-          '@md': {
-            display: 'flex',
-          },
-        }}
-        display="none"
-        flex={1}
+        className='flex-1 md:flex hidden'
       >
         <SideContainerWeb />
       </Box>
       <Box
-        bg="$backgroundLight0"
-        sx={{
-          '@md': {
-            p: '$8',
-          },
-          '_dark': {
-            bg: '$backgroundDark800',
-          },
-        }}
-        py="$8"
-        px="$4"
-        flex={1}
-        maxWidth="$508"
+        className='max-w-[508px] flex-1 px-4 py-8 bg-background-0 md:p-8 dark:bg-background-800'
       >
         <MainText />
-        <VStack space="md" mt="$6">
+        <VStack space="md" className='mt-6'>
           <FormControl>
             <PinInput
               refList={refList}
@@ -362,11 +258,11 @@ export default function OtpVerification() {
               setOtpInput={setOtpInput}
             />
             {validationError && (
-              <Text fontSize="$sm" color="$error700">
+              <Text className='text-sm color-error-700'>
                 {validationError}
               </Text>
             )}
-            <FormControlHelperText mt="$8">
+            <FormControlHelperText className='mt-8'>
               <ResendLink />
             </FormControlHelperText>
 
@@ -386,7 +282,7 @@ export default function OtpVerification() {
             isFocusVisible={false}
             onPress={() => router.replace('/create-password')}
           >
-            <ButtonText fontSize="$sm">PROCEED </ButtonText>
+            <ButtonText className='text-sm'>PROCEED </ButtonText>
           </Button>
         </VStack>
 

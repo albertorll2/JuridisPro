@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlHelper,
+} from '@gluestack-ui/themed';
+import {
   Center,
   Button,
-  FormControl,
   HStack,
   Input,
   Text,
@@ -11,16 +17,11 @@ import {
   useToast,
   Toast,
   Box,
-  CheckIcon,
   Checkbox,
   Icon,
   ToastTitle,
   InputField,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
   InputIcon,
-  FormControlHelper,
   CheckboxIndicator,
   CheckboxIcon,
   CheckboxLabel,
@@ -28,32 +29,30 @@ import {
   ButtonIcon,
   Image,
   Divider,
-  ArrowLeftIcon,
   Heading,
   LinkText,
   InputSlot,
-} from '@gluestack-ui/themed';
+} from '../../components/ui';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Keyboard } from 'react-native';
-import { AlertTriangle, EyeIcon, EyeOffIcon } from 'lucide-react-native';
-
+import { AlertTriangle, EyeIcon, EyeOffIcon,  ArrowLeftIcon, CheckIcon } from 'lucide-react-native';
 import { GoogleIcon, FacebookIcon } from './assets/Icons/Social';
 
 import GuestLayout from '../../layouts/GuestLayout';
-import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 
-import { styled } from '@gluestack-style/react';
+// import { styled } from '@gluestack-style/react';
 
-const StyledImage = styled(Image, {
-  props: {
-    style: {
-      height: 40,
-      width: 320,
-    },
-  },
-});
+// const StyledImage = styled(Image, {
+//   props: {
+//     style: {
+//       height: 40,
+//       width: 320,
+//     },
+//   },
+// });
 
 const signInSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -115,7 +114,7 @@ const SignInForm = () => {
 
   return (
     <>
-      <VStack justifyContent="space-between">
+      <VStack className='justify-between'>
         <FormControl
           isInvalid={(!!errors.email || isEmailFocused) && !!errors.email}
           isRequired={true}
@@ -137,7 +136,6 @@ const SignInForm = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input>
                 <InputField
-                  fontSize="$sm"
                   placeholder="Email"
                   type="text"
                   value={value}
@@ -145,6 +143,7 @@ const SignInForm = () => {
                   onBlur={onBlur}
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
+                  className='text-sm'
                 />
               </Input>
             )}
@@ -177,7 +176,6 @@ const SignInForm = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input>
                 <InputField
-                  fontSize="$sm"
                   placeholder="Password"
                   value={value}
                   onChangeText={onChange}
@@ -185,8 +183,9 @@ const SignInForm = () => {
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
                   type={showPassword ? 'text' : 'password'}
+                  className='text-sm'
                 />
-                <InputSlot onPress={handleState} pr="$3">
+                <InputSlot onPress={handleState} className='pr-3'>
                   <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
@@ -203,7 +202,7 @@ const SignInForm = () => {
         </FormControl>
       </VStack>
       <StyledExpoRouterLink ml="auto" href="/forgot-password">
-        <LinkText fontSize="$xs">Forgot password?</LinkText>
+        <LinkText className='text-xs'>Forgot password?</LinkText>
       </StyledExpoRouterLink>
       <Controller
         name="rememberme"
@@ -211,14 +210,13 @@ const SignInForm = () => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <Checkbox
-            my="$5"
-            size="sm"
+            // size="sm"
             value="Remember me"
             isChecked={value}
             onChange={onChange}
-            alignSelf="flex-start"
+            className='my-5 self-start '
           >
-            <CheckboxIndicator mr="$2">
+            <CheckboxIndicator className='mr-2'>
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
             <CheckboxLabel>Remember me and keep me logged in</CheckboxLabel>
@@ -228,10 +226,10 @@ const SignInForm = () => {
       <Button
         variant="solid"
         size="lg"
-        mt="$5"
         onPress={handleSubmit(onSubmit)}
+        className='mt-5'
       >
-        <ButtonText fontSize="$sm"> SIGN IN</ButtonText>
+        <ButtonText className='text-sm'> SIGN IN</ButtonText>
       </Button>
     </>
   );
@@ -240,17 +238,12 @@ const SignInForm = () => {
 function SideContainerWeb() {
   return (
     <Center
-      flex={1}
-      bg="$primary500"
-      sx={{
-        _dark: { bg: '$primary500' },
-      }}
+      className='bg-primary-500 dark:bg-primary-500 flex-1'
     >
-      <StyledImage
-        w="$80"
-        h="$10"
+      <Image
         alt="gluestack-ui Pro"
         resizeMode="contain"
+        className='w-8 h-10'
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
       />
     </Center>
@@ -259,34 +252,37 @@ function SideContainerWeb() {
 
 function MobileHeader() {
   return (
-    <VStack px="$3" mt="$4.5" space="md">
-      <HStack space="md" alignItems="center">
+    <VStack space="md" className='px-3 mt-4'>
+      <HStack space="md" className='items-center'>
         <StyledExpoRouterLink href="..">
           <Icon
             as={ArrowLeftIcon}
-            color="$textLight50"
-            sx={{ _dark: { color: '$textDark50' } }}
+            // color="$textLight50"
+            // sx={{ _dark: { color: '$textDark50' } }}
+            className='color-typography-50 dark:color-typography-950'
           />
         </StyledExpoRouterLink>
         <Text
-          color="$textLight50"
-          sx={{ _dark: { color: '$textDark50' } }}
-          fontSize="$lg"
+          // color="$textLight50"
+          // sx={{ _dark: { color: '$textDark50' } }}
+          // fontSize="$lg"
+          className='text-lg color-typography-50 dark:color-typography-950'
         >
           Sign In
         </Text>
       </HStack>
-      <VStack space="xs" ml="$1" my="$4">
-        <Heading color="$textLight50" sx={{ _dark: { color: '$textDark50' } }}>
+      <VStack space="xs" className='ml-1 my-4'>
+        <Heading className='color-typography-50 dark:color-typography-950'>
           Welcome back
         </Heading>
         <Text
-          fontSize="$md"
-          fontWeight="normal"
-          color="$primary300"
-          sx={{
-            _dark: { color: '$textDark400' },
-          }}
+          // fontSize="$md"
+          // fontWeight="normal"
+          // color="$primary300"
+          // sx={{
+          //   _dark: { color: '$textDark400' },
+          // }}
+          className='text-md font-normal color-primary-300 dark:color-typography-400'
         >
           Sign in to continue
         </Text>
@@ -298,68 +294,65 @@ function MobileHeader() {
 const Main = () => {
   return (
     <>
-      <Box sx={{ '@md': { display: 'none' } }}>
+      <Box className='md:hidden'>
         <MobileHeader />
       </Box>
       <Box
-        px="$4"
-        sx={{
-          '@md': {
-            px: '$8',
-            borderTopLeftRadius: '$none',
-            borderTopRightRadius: '$none',
-            borderBottomRightRadius: '$none',
-          },
-          '_dark': { bg: '$backgroundDark800' },
-        }}
-        py="$8"
-        flex={1}
-        bg="$backgroundLight0"
-        justifyContent="space-between"
-        borderTopLeftRadius="$2xl"
-        borderTopRightRadius="$2xl"
-        borderBottomRightRadius="$none"
+        // px="$4"
+        // sx={{
+        //   '@md': {
+        //     px: '$8',
+        //     borderTopLeftRadius: '$none',
+        //     borderTopRightRadius: '$none',
+        //     borderBottomRightRadius: '$none',
+        //   },
+        //   '_dark': { bg: '$backgroundDark800' },
+        // }}
+        // py="$8"
+        // flex={1}
+        // bg="$backgroundLight0"
+        // justifyContent="space-between"
+        // borderTopLeftRadius="$2xl"
+        // borderTopRightRadius="$2xl"
+        // borderBottomRightRadius="$none"
+        className='px-4 md:px-8 md:border-l-0 md:border-r-0 md:border-b-0 dark:bg-background-800 py-8 flex-1 bg-background-0 justify-between border-l-8 border-r-8 border-b-0'
       >
         <Heading
-          display="none"
-          mb="$8"
-          sx={{
-            '@md': { display: 'flex', fontSize: '$2xl' },
-          }}
+          // display="none"
+          // mb="$8"
+          // sx={{
+          //   '@md': { display: 'flex', fontSize: '$2xl' },
+          // }}
+          className='mb-8 md:flex md:text-2xl hidden'
         >
           Sign in to continue
         </Heading>
         <SignInForm />
-        <HStack my="$4" space="md" alignItems="center" justifyContent="center">
+        <HStack  space="md" className='my-4 items-center justify-center'>
           <Divider
-            w="$2/6"
-            bg="$backgroundLight200"
-            sx={{ _dark: { bg: '$backgroundDark700' } }}
+            // w="$2/6"
+            // bg="$backgroundLight200"
+            // sx={{ _dark: { bg: '$backgroundDark700' } }}
+            className='w-2/6 bg-background-200 dark:bg-background-700'
           />
           <Text
-            fontWeight="medium"
-            color="$textLight400"
-            sx={{ _dark: { color: '$textDark300' } }}
+            // fontWeight="medium"
+            // color="$textLight400"
+            // sx={{ _dark: { color: '$textDark300' } }}
+            className='font-medium color-typography-400 dark:color-typography-300'
           >
             or
           </Text>
           <Divider
-            w="$2/6"
-            bg="$backgroundLight200"
-            sx={{ _dark: { bg: '$backgroundDark700' } }}
+            // w="$2/6"
+            // bg="$backgroundLight200"
+            // sx={{ _dark: { bg: '$backgroundDark700' } }}
+            className='w-2/6 bg-background-200 dark:bg-background-700'
           />
         </HStack>
         <HStack
-          mt="$6"
-          sx={{
-            '@md': {
-              mt: '$4',
-            },
-          }}
-          mb="$9"
-          justifyContent="center"
-          alignItems="center"
           space="lg"
+          className='mt-6 md:mt-4 mb-9 justify-center items-center '
         >
           <Link href="">
             <Button action="secondary" variant="link" onPress={() => {}}>
@@ -374,19 +367,17 @@ const Main = () => {
         </HStack>
         <HStack
           space="xs"
-          alignItems="center"
-          justifyContent="center"
-          mt="auto"
+          className='mt-auto items-center justify-center'
         >
           <Text
-            color="$textLight500"
-            fontSize="$sm"
-            sx={{ _dark: { color: '$textDark400' } }}
+            // color="$textLight500"
+            // sx={{ _dark: { color: '$textDark400' } }}
+            className='color-typography-500 text-sm dark:color-typography-400'
           >
             Don't have an account?
           </Text>
           <StyledExpoRouterLink href="/signup">
-            <LinkText fontSize="$sm">Sign up</LinkText>
+            <LinkText  className='text-sm'>Sign up</LinkText>
           </StyledExpoRouterLink>
         </HStack>
       </Box>
@@ -397,7 +388,7 @@ const Main = () => {
 const SignIn = () => {
   return (
     <GuestLayout>
-      <Box display="none" sx={{ '@md': { display: 'flex' } }} flex={1}>
+      <Box  className='flex-1 hidden md:flex'>
         <SideContainerWeb />
       </Box>
       <Main />

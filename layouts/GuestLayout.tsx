@@ -1,57 +1,49 @@
 import React from 'react';
-import { Box, StatusBar, ScrollView, VStack } from '@gluestack-ui/themed';
-
+// import { Box, StatusBar, ScrollView, VStack } from '@gluestack-ui/themed';
+import { Box , VStack } from '../components/ui';
+import { ScrollView , StatusBar } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useMediaQuery, useTheme, useToken } from '@gluestack-style/react';
 
 type GuestLayoutProps = {
   children: React.ReactNode;
 };
 
 export default function GuestLayout(props: GuestLayoutProps) {
+  const primary500=useToken('colors','primary500')
+  const primary900=useToken('colors','primary900')
+  const backgroundDark900=useToken('colors','backgroundDark900')
+  const theme=useTheme()
+  const isMediumScreen=useMediaQuery({
+      minWidth:'768px'
+  })
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Box
-          sx={{
-            _web: {
-              height: '100vh',
-              overflow: 'hidden',
-            },
-          }}
-          height="100%"
+          className='h-full web:h-[100vh] overflow-hidden' 
         >
           <StatusBar
             translucent
             backgroundColor="transparent"
             barStyle="light-content"
           />
-          <ScrollView
-            flex={1}
+          <ScrollView 
             contentContainerStyle={{
               alignItems: 'center',
               flexGrow: 1,
               justifyContent: 'center',
             }}
-            sx={{
-              '@base': { _light: { bg: '$primary500' } },
-              '@md': { _light: { bg: '$primary900' }, p: '$8' },
-              '_dark': { bg: '$backgroundDark900' },
+            style={{
+              flex:1,
+              backgroundColor: theme==='dark'? backgroundDark900 : isMediumScreen ? primary900 : primary500,
             }}
             bounces={false}
           >
+            {/* $max-w-$$containerWidth */}
             <VStack
-              w="$full"
-              flex={1}
-              overflow="hidden"
-              sx={{
-                '@md': {
-                  maxWidth: '$containerWidth',
-                  flexDirection: 'row',
-                  rounded: '$xl',
-                  flex: undefined,
-                },
-              }}
+              className='w-full flex-1 overflow-hidden md:max-w-fit md:flex-row md:rounded-xl md:flex-none'
             >
               {props.children}
             </VStack>

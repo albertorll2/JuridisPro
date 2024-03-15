@@ -3,5 +3,8 @@
   "compilerOptions": {
     "strict": true
   },
+  "paths": {
+    "@/*": ["./app/*"] // Add relative path
+  },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }
