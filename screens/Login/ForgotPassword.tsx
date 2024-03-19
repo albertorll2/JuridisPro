@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
-import {
+import { Box } from "@/components/ui/box";
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { Button , ButtonText} from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+import { Center } from '@/components/ui/center';
+import { Heading } from '@/components/ui/heading';
+import { Input,InputField } from '@/components/ui/input';
+import { Toast,useToast,ToastTitle } from '@/components/ui/toast';
+import { 
   FormControl,
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-} from '@gluestack-ui/themed';
-import {
-  Button,
-  HStack,
-  Input,
-  Text,
-  VStack,
-  useToast,
-  Toast,
-  Box,
-  Icon,
-  ToastTitle,
-  InputField,
-  ButtonText,
-  Image,
-  Heading,
-  Center,
-} from '../../components/ui';
+} from '@/components/ui/form-control';
 import GuestLayout from '../../layouts/GuestLayout';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,8 +37,6 @@ function Header() {
         <Icon
           size="md"
           as={ArrowLeftIcon}
-          // color="$textLight50"
-          // sx={{ _dark: { color: '$textDark50' } }}
           className='color-typography-50 dark:color-typography-950'
         />
       </StyledExpoRouterLink>
@@ -161,7 +153,7 @@ export default function ForgotPassword() {
             </Text>
           </VStack>
           <FormControl
-            my="$8" 
+            className='my-8'
             isInvalid={(!!errors.email || isEmailFocused) && !!errors.email}
             isRequired={true}
           >
@@ -197,7 +189,7 @@ export default function ForgotPassword() {
               )}
             />
             <FormControlError>
-              <FormControlErrorIcon as={AlertTriangle} size="md" />
+              <FormControlErrorIcon as={AlertTriangle} size="sm" />
               <FormControlErrorText>
                 {errors?.email?.message}
               </FormControlErrorText>

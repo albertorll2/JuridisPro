@@ -1,31 +1,23 @@
 import React, { useState } from 'react';
-import {
+import { Box } from "@/components/ui/box";
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { Button , ButtonText} from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+import { Center } from '@/components/ui/center';
+import { Heading } from '@/components/ui/heading';
+import { Input,InputField ,InputIcon,InputSlot} from '@/components/ui/input';
+import { Toast,useToast,ToastTitle } from '@/components/ui/toast';
+import { 
   FormControl,
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
   FormControlHelperText,
-  FormControlHelper
-} from '@gluestack-ui/themed';
-import {
-  VStack,
-  Box,
-  HStack,
-  Icon,
-  Text,
-  Button,
-  Image,
-  Center,
-  Heading,
-  ButtonText,
-  Input,
-  useToast,
-  Toast,
-  InputField,
-  ToastTitle,
-  InputIcon,
-  InputSlot,
-} from '../../components/ui';
+  FormControlHelper,
+} from '@/components/ui/form-control';
 import { AlertTriangle, ArrowLeftIcon, EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';

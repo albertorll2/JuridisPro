@@ -1,10 +1,10 @@
 import React from 'react';
-// import { Box, StatusBar, ScrollView, VStack } from '@gluestack-ui/themed';
-import { Box , VStack } from '../components/ui';
+import { Box  } from '@/components/ui/box';
+import { VStack } from '@/components/ui/vstack';
 import { ScrollView , StatusBar } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useMediaQuery, useTheme, useToken } from '@gluestack-style/react';
+import { useMediaQuery, useColorMode, useToken } from '@gluestack-ui/themed';
 
 type GuestLayoutProps = {
   children: React.ReactNode;
@@ -14,10 +14,11 @@ export default function GuestLayout(props: GuestLayoutProps) {
   const primary500=useToken('colors','primary500')
   const primary900=useToken('colors','primary900')
   const backgroundDark900=useToken('colors','backgroundDark900')
-  const theme=useTheme()
-  const isMediumScreen=useMediaQuery({
-      minWidth:'768px'
+  const theme=useColorMode()
+  const [isMediumScreen]=useMediaQuery({
+    minWidth:'768px'
   })
+  console.log(primary500,primary900,backgroundDark900,theme,isMediumScreen)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -43,7 +44,7 @@ export default function GuestLayout(props: GuestLayoutProps) {
           >
             {/* $max-w-$$containerWidth */}
             <VStack
-              className='w-full flex-1 overflow-hidden md:max-w-fit md:flex-row md:rounded-xl md:flex-none'
+              className='w-full flex-1 overflow-hidden md:max-w-screen-md md:flex-row md:rounded-xl md:flex-none'
             >
               {props.children}
             </VStack>

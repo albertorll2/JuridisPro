@@ -1,27 +1,23 @@
 import React, { useRef, useState } from 'react';
-import {
-  VStack,
-  Box,
-  HStack,
-  Icon,
-  Text,
-  Button,
-  Image,
-  Center,
-  Input,
-  LinkText,
-  InputField,
-  ButtonText,
-  useToast,
-  Heading,
-} from '../../components/ui';
-import {
+import { Box } from "@/components/ui/box";
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { Button , ButtonText} from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+import { Center } from '@/components/ui/center';
+import { Heading } from '@/components/ui/heading';
+import { Input,InputField } from '@/components/ui/input';
+import { useToast} from '@/components/ui/toast';
+import { LinkText} from '@/components/ui/link';
+import { 
   FormControl,
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-  FormControlHelperText
-} from '@gluestack-ui/themed';
+  FormControlHelperText,
+} from '@/components/ui/form-control';
 import GuestLayout from '../../layouts/GuestLayout';
 import { z } from 'zod';
 import { AlertTriangle,ArrowLeftIcon } from 'lucide-react-native';
@@ -265,15 +261,13 @@ export default function OtpVerification() {
             <FormControlHelperText className='mt-8'>
               <ResendLink />
             </FormControlHelperText>
-
             <FormControlError>
-              <FormControlErrorIcon as={AlertTriangle} size="md" />
+              <FormControlErrorIcon as={AlertTriangle} size="sm" />
               <FormControlErrorText>
                 {errors?.OTP?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-
           <Button
             size="lg"
             variant="solid"
@@ -285,7 +279,6 @@ export default function OtpVerification() {
             <ButtonText className='text-sm'>PROCEED </ButtonText>
           </Button>
         </VStack>
-
         <AccountLink />
       </Box>
     </GuestLayout>

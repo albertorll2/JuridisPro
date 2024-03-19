@@ -23,7 +23,7 @@ const providerStyle = Platform.select({
   },
 });
 
-export function NativewindUIProvider({
+export function GluestackUIProvider({
   mode,
   ...props
 }: {
@@ -34,7 +34,7 @@ export function NativewindUIProvider({
   return (
     <View
       style={[
-        mode ? config[mode] : config['light'],
+        config[mode],
         providerStyle,
         // @ts-ignore
         props.style,

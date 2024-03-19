@@ -1,3 +1,4 @@
+import '../global.css';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 // import {
 //   DarkTheme,
@@ -8,9 +9,10 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
-// import { config } from '../gluestack-ui.config';
-// import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { NativewindUIProvider} from '../components/nativewind-ui-provider'
+// import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { GluestackUIProvider as NativewindProvider } from '@/components/ui/gluestack-ui-provider';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@/gluestack-ui.config';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,17 +53,18 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-
   return (
-    <NativewindUIProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="signup" options={{ headerShown: false }} />
-        <Stack.Screen name="forgot-password" options={{ headerShown: false }} />
-        <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
-        <Stack.Screen name="create-password" options={{ headerShown: false }} />
-      </Stack>
-    </NativewindUIProvider>
+     <NativewindProvider mode={colorScheme}> 
+      <GluestackUIProvider config={config} colorMode={colorScheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="login" options={{ headerShown: false }} />
+          <Stack.Screen name="signup" options={{ headerShown: false }} />
+          <Stack.Screen name="forgot-password" options={{ headerShown: false }} />
+          <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
+          <Stack.Screen name="create-password" options={{ headerShown: false }} />
+        </Stack>
+      </GluestackUIProvider>
+      </NativewindProvider>  
   );
 }

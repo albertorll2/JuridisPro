@@ -12,7 +12,6 @@ import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import { Platform } from 'react-native';
-import { Check } from 'lucide-react-native';
 
 const UICheckbox = createCheckbox({
   // @ts-ignore
@@ -21,7 +20,7 @@ const UICheckbox = createCheckbox({
       ? withStyleContext(View)
       : withStyleContextAndStates(Pressable),
   Group: withStates(View),
-  Icon: withStates(Check),
+  Icon: withStates(View),
   Label: withStates(Text),
   Indicator: withStates(View),
 });
@@ -59,7 +58,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'group-data-[checked=true]/checkboxInd:text-typography-0 data-[disabled=true]:opacity-40',
+  base: 'text-typography-0 data-[disabled=true]:opacity-40 fill-none',
 
   parentVariants: {
     size: {

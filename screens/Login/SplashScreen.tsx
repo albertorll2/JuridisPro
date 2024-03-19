@@ -1,46 +1,39 @@
 import React from 'react';
-import {
-  Box,
-  VStack,
-  Button,
-  Image,
-  Center,
-  ButtonText,
-} from '../../components/ui';
+import { Box } from "@/components/ui/box";
+import { VStack } from '@/components/ui/vstack';
+import { Button , ButtonText} from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+import { Center } from '@/components/ui/center';
 import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 
 function ActionButtons() {
   return (
-    <VStack
-      className='space-xs mt-10 md:mt-12'
-    >
+    <VStack className="space-xs mt-10 md:mt-12">
       <Button
         size="md"
         variant="solid"
         action="primary"
         isDisabled={false}
         isFocusVisible={false}
-        className='hover:bg-background-100 bg-background-0 p-2 rounded-md'
+        className="hover:bg-background-100 bg-background-0 p-2 rounded-md"
       >
-        <StyledExpoRouterLink href="/login">
-          <ButtonText
-            className='font-bold decoration-0 color-primary-500'
-          >
+        <StyledExpoRouterLink href="/login" width="auto">
+          <ButtonText className="font-bold decoration-0 color-primary-500">
             LOGIN
           </ButtonText>
         </StyledExpoRouterLink>
       </Button>
       <Button
-        className='hover:bg-background-0 hover:color-primary-500 border-border-0 my-4 p-2 rounded-md'
+        className="hover:bg-background-0 hover:color-primary-500 border-border-0 my-4 p-2 rounded-md"
         size="md"
         variant="outline"
         action="primary"
         isDisabled={false}
         isFocusVisible={false}
       >
-        <StyledExpoRouterLink href="/signup">
-          <ButtonText  className='decoration-0 color-typography-100 hover:color-primary-500'>
+        <StyledExpoRouterLink href="/signup" width="auto">
+          <ButtonText className="decoration-0 color-typography-100 ">
             SIGN UP
           </ButtonText>
         </StyledExpoRouterLink>

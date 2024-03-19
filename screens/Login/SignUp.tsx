@@ -1,37 +1,24 @@
 import React, { useState } from 'react';
-import {
+import { Box } from "@/components/ui/box";
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { Link,LinkText } from '@/components/ui/link';
+import { Button , ButtonText ,ButtonIcon} from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+import { Divider } from '@/components/ui/divider';
+import { Center } from '@/components/ui/center';
+import { Heading } from '@/components/ui/heading';
+import { Input,InputField ,InputIcon,InputSlot} from '@/components/ui/input';
+import { Toast,useToast,ToastTitle } from '@/components/ui/toast';
+import { Checkbox,CheckboxIcon,CheckboxIndicator,CheckboxLabel } from '@/components/ui/checkbox';
+import { 
   FormControl,
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-} from '@gluestack-ui/themed';
-import {
-  Button,
-  Checkbox,
-  Image,
-  HStack,
-  VStack,
-  Text,
-  Link,
-  Divider,
-  Icon,
-  Center,
-  Box,
-  LinkText,
-  Input,
-  InputIcon,
-  Toast,
-  ToastTitle,
-  useToast,
-  ButtonIcon,
-  CheckboxIndicator,
-  CheckboxIcon,
-  CheckboxLabel,
-  ButtonText,
-  Heading,
-  InputField,
-  InputSlot,
-} from '../../components/ui';
+} from '@/components/ui/form-control';
 import { Controller, useForm } from 'react-hook-form';
 import { AlertTriangle, EyeIcon, EyeOffIcon , ArrowLeftIcon, CheckIcon} from 'lucide-react-native';
 import { z } from 'zod';
@@ -41,17 +28,6 @@ import { FacebookIcon, GoogleIcon } from './assets/Icons/Social';
 import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../app/components/StyledExpoRouterLink';
 import { router } from 'expo-router';
-
-// import { styled } from '@gluestack-style/react';
-
-// const StyledImage = styled(Image, {
-//   props: {
-//     style: {
-//       height: 40,
-//       width: 320,
-//     },
-//   },
-// });
 
 const signUpSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -83,18 +59,9 @@ type SignUpSchemaType = z.infer<typeof signUpSchema>;
 function SideContainerWeb() {
   return (
     <Center
-      // bg="$primary500"
-      // flex={1}
-      // sx={{
-      //   _dark: {
-      //     bg: '$primary500',
-      //   },
-      // }}
       className='bg-primary-500 flex-1 dark:bg-primary-500'
     >
       <Image
-        // h="$10"
-        // w="$80"
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
@@ -111,15 +78,10 @@ function MobileHeader() {
         <StyledExpoRouterLink href="..">
           <Icon
             as={ArrowLeftIcon}
-            // color="$textLight50"
-            // sx={{ _dark: { color: '$textDark50' } }}
             className='color-typography-50 dark:typography-950'
           />
         </StyledExpoRouterLink>
         <Text
-          // color="$textLight50"
-          // sx={{ _dark: { color: '$textDark50' } }}
-          // fontSize="$lg"
           className='text-lg color-typography-50 dark:color-typography-950'
         >
           Sign Up
@@ -130,13 +92,6 @@ function MobileHeader() {
           Welcome
         </Heading>
         <Text
-          // color="$primary300"
-          // fontSize="$md"
-          // sx={{
-          //   _dark: {
-          //     color: '$textDark400',
-          //   },
-          // }}
           className='color-primary-300 text-lg dark:color-typography-300'
         >
           Sign up to continue
@@ -209,7 +164,7 @@ const SignUpForm = () => {
 
   return (
     <>
-      <VStack  className='justify-between'>
+      <VStack className="justify-between">
         <FormControl
           isInvalid={(!!errors.email || isEmailFocused) && !!errors.email}
           isRequired={true}
@@ -238,20 +193,23 @@ const SignUpForm = () => {
                   onBlur={onBlur}
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
-                  className='text-sm '
+                  className="text-sm"
                 />
               </Input>
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="md" as={AlertTriangle} />
+            <FormControlErrorIcon size="sm" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.email?.message}
             </FormControlErrorText>
           </FormControlError>
         </FormControl>
-
-        <FormControl isInvalid={!!errors.password} isRequired={true} my="$6">
+        <FormControl
+          isInvalid={!!errors.password}
+          isRequired={true}
+          className="my-6"
+        >
           <Controller
             defaultValue=""
             name="password"
@@ -278,9 +236,9 @@ const SignUpForm = () => {
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
                   type={showPassword ? 'text' : 'password'}
-                  className='text-sm'
+                  className="text-sm"
                 />
-                <InputSlot onPress={handleState}  className='pr-3'>
+                <InputSlot onPress={handleState} className="pr-3">
                   <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
@@ -293,7 +251,6 @@ const SignUpForm = () => {
             </FormControlErrorText>
           </FormControlError>
         </FormControl>
-
         <FormControl isInvalid={!!errors.confirmpassword} isRequired={true}>
           <Controller
             defaultValue=""
@@ -322,10 +279,10 @@ const SignUpForm = () => {
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
                   type={showConfirmPassword ? 'text' : 'password'}
-                  className='text-sm'
+                  className="text-sm"
                 />
-                <InputSlot onPress={handleConfirmPwState}  className='pr-3'>
-                  <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
+                <InputSlot onPress={handleConfirmPwState} className="pr-3">
+                  <InputIcon as={showConfirmPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
             )}
@@ -349,64 +306,32 @@ const SignUpForm = () => {
             isChecked={value}
             onChange={onChange}
             alignSelf="flex-start"
-            className='mt-5'
+            className="mt-5"
           >
-            <CheckboxIndicator  className='mr-2'>
+            <CheckboxIndicator className="mr-2">
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
-            <CheckboxLabel
-              // sx={{
-              //   _text: {
-              //     fontSize: '$sm',
-              //   },
-              // }}
-              className='text-sm'
-            >
+            <CheckboxLabel className="text-sm">
               I accept the{' '}
               <Link>
-                <LinkText
-                  // sx={{
-                  //   _ios: {
-                  //     marginTop: '$0.5',
-                  //   },
-                  //   _android: {
-                  //     marginTop: '$0.5',
-                  //   },
-                  // }}
-                  className='mt-0.5 web:mt-0'
-                >
-                  Terms of Use
-                </LinkText>
+                <LinkText className="mt-0.5 web:mt-0">Terms of Use</LinkText>
               </Link>{' '}
               &{' '}
               <Link>
-                <LinkText
-                  // sx={{
-                  //   _ios: {
-                  //     marginTop: '$0.5',
-                  //   },
-                  //   _android: {
-                  //     marginTop: '$0.5',
-                  //   },
-                  // }}
-                  className='mt-0.5 web:mt-0'
-
-                >
-                  Privacy Policy
-                </LinkText>
+                <LinkText className="mt-0.5 web:mt-0">Privacy Policy</LinkText>
               </Link>
             </CheckboxLabel>
           </Checkbox>
         )}
       />
       <Button
-        // mt="$5"
         variant="solid"
+        action="primary"
         size="lg"
         onPress={handleSubmit(onSubmit)}
-        className='mt-5'
+        className="mt-5"
       >
-        <ButtonText className='text-sm'>SIGN UP</ButtonText>
+        <ButtonText>SIGN UP</ButtonText>
       </Button>
     </>
   );
@@ -420,27 +345,7 @@ function SignUpFormComponent() {
       >
         <MobileHeader />
       </Box>
-
       <Box
-        // flex={1}
-        // bg="$backgroundLight0"
-        // sx={{
-        //   '@md': {
-        //     px: '$8',
-        //     borderTopLeftRadius: '$none',
-        //     borderTopRightRadius: '$none',
-        //     borderBottomRightRadius: '$none',
-        //   },
-        //   '_dark': {
-        //     bg: '$backgroundDark800',
-        //   },
-        // }}
-        // px="$4"
-        // py="$8"
-        // justifyContent="space-between"
-        // borderTopLeftRadius="$2xl"
-        // borderTopRightRadius="$2xl"
-        // borderBottomRightRadius="$none"
         className='flex-1 bg-background-0 md:px-8 md:border-b-0 md:border-l-0 md:border-r-0 dark:bg-background-800 px-4 py-8 justify-between  border-l-8 border-r-8'
       >
         <Heading
@@ -448,9 +353,7 @@ function SignUpFormComponent() {
         >
           Sign up to continue
         </Heading>
-
         <SignUpForm />
-
         <HStack space="md" className='my-4 items-center justify-center'>
           <Divider
             className='w-2/6 bg-background-200 dark:bg-background-700'
@@ -479,7 +382,6 @@ function SignUpFormComponent() {
             </Button>
           </Link>
         </HStack>
-
         <HStack
           space="xs"
           className='items-center justify-center mt-auto'
@@ -489,7 +391,6 @@ function SignUpFormComponent() {
           >
             Already have an account?
           </Text>
-
           <StyledExpoRouterLink href="/login">
             <LinkText  className='text-sm'>Sign In</LinkText>
           </StyledExpoRouterLink>

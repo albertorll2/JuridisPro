@@ -7,6 +7,7 @@ module.exports = {
     './app/**/**/*.{html,js,jsx,ts,tsx}',
     './layouts/*.{html,js,jsx,ts,tsx}',
     './screens/**/**/*.{html,js,jsx,ts,tsx}',
+    './components/**/**/*.{html,js,jsx,ts,tsx}',
   ],
   presets: [require('nativewind/preset')],
   theme: {
