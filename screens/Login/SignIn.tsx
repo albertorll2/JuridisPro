@@ -67,19 +67,19 @@ const SignInForm = () => {
   });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
 
-  const toast = useToast();
+  // const toast = useToast();
 
   const onSubmit = (_data: SignInSchemaType) => {
-    toast.show({
-      placement: 'bottom right',
-      render: ({ id }) => {
-        return (
-          <Toast nativeID={id} variant="accent" action="success">
-            <ToastTitle>Signed in successfully</ToastTitle>
-          </Toast>
-        );
-      },
-    });
+    // toast.show({
+    //   placement: 'bottom right',
+    //   render: ({ id }) => {
+    //     return (
+    //       <Toast nativeID={id} variant="accent" action="success">
+    //         <ToastTitle>Signed in successfully</ToastTitle>
+    //       </Toast>
+    //     );
+    //   },
+    // });
     reset();
     // Implement your own onSubmit and navigation logic here.
   };

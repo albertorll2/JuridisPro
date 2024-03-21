@@ -18,7 +18,6 @@ export default function GuestLayout(props: GuestLayoutProps) {
   const [isMediumScreen]=useMediaQuery({
     minWidth:'768px'
   })
-  console.log(primary500,primary900,backgroundDark900,theme,isMediumScreen)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>

@@ -97,19 +97,19 @@ export default function ForgotPassword() {
 
   const [isEmailFocused, setIsEmailFocused] = useState(false);
 
-  const toast = useToast();
+  // const toast = useToast();
 
   const onSubmit = (_data: SignUpSchemaType) => {
-    toast.show({
-      placement: 'bottom right',
-      render: ({ id }) => {
-        return (
-          <Toast nativeID={id} variant="accent" action="success">
-            <ToastTitle>OTP sent successfully </ToastTitle>
-          </Toast>
-        );
-      },
-    });
+    // toast.show({
+    //   placement: 'bottom right',
+    //   render: ({ id }) => {
+    //     return (
+    //       <Toast nativeID={id} variant="accent" action="success">
+    //         <ToastTitle>OTP sent successfully </ToastTitle>
+    //       </Toast>
+    //     );
+    //   },
+    // });
     reset();
 
     // Navigate screen to appropriate location

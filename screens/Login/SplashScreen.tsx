@@ -16,7 +16,7 @@ function ActionButtons() {
         action="primary"
         isDisabled={false}
         isFocusVisible={false}
-        className="hover:bg-background-100 bg-background-0 p-2 rounded-md"
+        className="hover:bg-background-100 hover:color-primary-500 bg-background-0"
       >
         <StyledExpoRouterLink href="/login" width="auto">
           <ButtonText className="font-bold decoration-0 color-primary-500">
@@ -25,7 +25,7 @@ function ActionButtons() {
         </StyledExpoRouterLink>
       </Button>
       <Button
-        className="hover:bg-background-0 hover:color-primary-500 border-border-0 my-4 p-2 rounded-md"
+        className="hover:bg-background-0 hover:color-primary-500 border-primary-0 my-4"
         size="md"
         variant="outline"
         action="primary"
@@ -33,7 +33,7 @@ function ActionButtons() {
         isFocusVisible={false}
       >
         <StyledExpoRouterLink href="/signup" width="auto">
-          <ButtonText className="decoration-0 color-typography-100 ">
+          <ButtonText className="decoration-0 color-typography-100">
             SIGN UP
           </ButtonText>
         </StyledExpoRouterLink>

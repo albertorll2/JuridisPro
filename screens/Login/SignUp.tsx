@@ -112,33 +112,33 @@ const SignUpForm = () => {
   });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [pwMatched, setPwMatched] = useState(false);
-  const toast = useToast();
+  // const toast = useToast();
 
   const onSubmit = (_data: SignUpSchemaType) => {
     if (_data.password === _data.confirmpassword) {
       setPwMatched(true);
-      toast.show({
-        placement: 'bottom right',
-        render: ({ id }) => {
-          return (
-            <Toast nativeID={id} variant="accent" action="success">
-              <ToastTitle>Signed up successfully</ToastTitle>
-            </Toast>
-          );
-        },
-      });
+      // toast.show({
+      //   placement: 'bottom right',
+      //   render: ({ id }) => {
+      //     return (
+      //       <Toast nativeID={id} variant="accent" action="success">
+      //         <ToastTitle>Signed up successfully</ToastTitle>
+      //       </Toast>
+      //     );
+      //   },
+      // });
       reset();
     } else {
-      toast.show({
-        placement: 'bottom right',
-        render: ({ id }) => {
-          return (
-            <Toast nativeID={id} action="error">
-              <ToastTitle>Passwords do not match</ToastTitle>
-            </Toast>
-          );
-        },
-      });
+      // toast.show({
+      //   placement: 'bottom right',
+      //   render: ({ id }) => {
+      //     return (
+      //       <Toast nativeID={id} action="error">
+      //         <ToastTitle>Passwords do not match</ToastTitle>
+      //       </Toast>
+      //     );
+      //   },
+      // });
     }
     // Implement your own onSubmit and navigation logic here.
     // Navigate to appropriate location

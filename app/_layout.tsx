@@ -54,7 +54,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
   return (
-     <NativewindProvider mode={colorScheme}> 
+    <NativewindProvider mode={colorScheme}>
       <GluestackUIProvider config={config} colorMode={colorScheme}>
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -65,6 +65,6 @@ function RootLayoutNav() {
           <Stack.Screen name="create-password" options={{ headerShown: false }} />
         </Stack>
       </GluestackUIProvider>
-      </NativewindProvider>  
+    </NativewindProvider>
   );
 }

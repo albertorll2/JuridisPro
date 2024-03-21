@@ -195,7 +195,7 @@ export default function OtpVerification() {
   const [inputFocus, setInputFocus] = useState<number>(-1);
   const [validationError, setValidationError] = useState<string | null>(null); // State to hold validation error message
 
-  const toast = useToast();
+  // const toast = useToast();
 
   // const onSubmit = (_data: OTPSchemaType) => {
   //   toast.show({

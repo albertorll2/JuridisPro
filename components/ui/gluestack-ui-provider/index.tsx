@@ -1,41 +1,19 @@
-
 import React from 'react';
-import { Platform, View } from 'react-native';
-
-// Change the config file path
 import { config } from './config';
-
-const providerStyle = Platform.select({
-  web: {
-    flex: 1,
-    height: '100vh',
-    width: '100%',
-  },
-  android: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  },
-  ios: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  },
-});
+import { View } from 'react-native';
 
 export function GluestackUIProvider({
-  mode,
+  mode = 'light',
   ...props
 }: {
-  mode?: 'light' | 'dark';
+  mode: 'light' | 'dark';
   children: any;
 }) {
-  // @ts-ignore
   return (
     <View
       style={[
         config[mode],
-        providerStyle,
+        { flex: 1, height: '100%', width: '100%' },
         // @ts-ignore
         props.style,
       ]}
@@ -44,4 +22,3 @@ export function GluestackUIProvider({
     </View>
   );
 }
-
