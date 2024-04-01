@@ -1,23 +1,20 @@
 import React from 'react';
-import { Box  } from '@/components/ui/box';
+import { Box } from '@/components/ui/box';
 import { VStack } from '@/components/ui/vstack';
-import { ScrollView , StatusBar } from 'react-native';
+import { ScrollView, StatusBar } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useMediaQuery, useColorMode, useToken } from '@gluestack-ui/themed';
-
+import { useColorScheme } from 'nativewind';
+import { Pressable } from '@/components/ui/pressable';
+import { Icon } from '@/components/ui/icon';
+import { ToggleLeftIcon, ToggleRightIcon } from 'lucide-react-native';
 type GuestLayoutProps = {
   children: React.ReactNode;
 };
 
 export default function GuestLayout(props: GuestLayoutProps) {
-  const primary500=useToken('colors','primary500')
-  const primary900=useToken('colors','primary900')
-  const backgroundDark900=useToken('colors','backgroundDark900')
-  const theme=useColorMode()
-  const [isMediumScreen]=useMediaQuery({
-    minWidth:'768px'
-  })
+  const { colorScheme, toggleColorScheme } = useColorScheme();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -33,11 +30,21 @@ export default function GuestLayout(props: GuestLayoutProps) {
               flexGrow: 1,
               justifyContent: 'center',
             }}
-            className="flex-1 dark:bg-background-900 md:dark:bg-primary-900 bg-primary-500"
+            className="flex-1 bg-background-800
+            dark:bg-background-100"
             bounces={false}
           >
-            {/* $max-w-$$containerWidth */}
-            <VStack className="w-full flex-1 overflow-hidden md:max-w-screen-md md:flex-row md:rounded-xl md:flex-none">
+            <Pressable
+              onPress={toggleColorScheme}
+              className="bg-blue-500 rounded-full p-2 md:p-4 absolute z-10 right-4 top-4"
+            >
+              <Icon
+                size="md"
+                as={colorScheme === 'dark' ? ToggleRightIcon : ToggleLeftIcon}
+                className="text-background-0 dark:text-background-950"
+              />
+            </Pressable>
+            <VStack className="w-full flex-1 overflow-hidden md:max-w-[750px] md:flex-row md:rounded-xl md:flex-none">
               {props.children}
             </VStack>
           </ScrollView>

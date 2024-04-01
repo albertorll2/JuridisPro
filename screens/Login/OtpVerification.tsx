@@ -75,16 +75,18 @@ function PinInput({
 
 function Header() {
   return (
-    <HStack space="xs" className='px-3 my-4 items-center'>
+    <HStack
+      space="xs"
+      className="px-3 my-4 items-center bg-background-950
+            dark:bg-background-0"
+    >
       <StyledExpoRouterLink href="/">
         <Icon
           as={ArrowLeftIcon}
-          className='color-typography-50 dark:color-typography-50'
+          className="color-typography-50 dark:color-typography-50"
         />
       </StyledExpoRouterLink>
-      <Text
-        className='color-typography-50 text-lg dark:color-typography-50'
-      >
+      <Text className="color-typography-50 text-lg dark:color-typography-50">
         OTP Verification
       </Text>
     </HStack>
@@ -93,13 +95,14 @@ function Header() {
 function SideContainerWeb() {
   return (
     <Center
-      className='flex-1 bg-primary-500 dark:bg-primary-500'
+      className="flex-1 bg-background-950
+            dark:bg-background-0"
     >
       <Image
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
-        className='h-10 w-80'
+        className="h-10 w-80"
       />
     </Center>
   );
@@ -230,21 +233,18 @@ export default function OtpVerification() {
 
   return (
     <GuestLayout>
-      <Box
-        className='flex md:hidden'
-      >
+      <Box className="flex md:hidden">
         <Header />
       </Box>
-      <Box
-        className='flex-1 md:flex hidden'
-      >
+      <Box className="flex-1 md:flex hidden">
         <SideContainerWeb />
       </Box>
       <Box
-        className='max-w-[508px] flex-1 px-4 py-8 bg-background-0 md:p-8 dark:bg-background-800'
+        className="max-w-[508px] flex-1 px-4 py-8 bg-background-0
+            dark:bg-background-50 md:p-8"
       >
         <MainText />
-        <VStack space="md" className='mt-6'>
+        <VStack space="md" className="mt-6">
           <FormControl>
             <PinInput
               refList={refList}
@@ -254,11 +254,9 @@ export default function OtpVerification() {
               setOtpInput={setOtpInput}
             />
             {validationError && (
-              <Text className='text-sm color-error-700'>
-                {validationError}
-              </Text>
+              <Text className="text-sm color-error-700">{validationError}</Text>
             )}
-            <FormControlHelperText className='mt-8'>
+            <FormControlHelperText className="mt-8">
               <ResendLink />
             </FormControlHelperText>
             <FormControlError>
@@ -276,7 +274,7 @@ export default function OtpVerification() {
             isFocusVisible={false}
             onPress={() => router.replace('/create-password')}
           >
-            <ButtonText className='text-sm'>PROCEED </ButtonText>
+            <ButtonText className="text-sm">PROCEED </ButtonText>
           </Button>
         </VStack>
         <AccountLink />

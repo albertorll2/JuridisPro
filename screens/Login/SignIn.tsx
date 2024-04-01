@@ -225,7 +225,10 @@ const SignInForm = () => {
 
 function SideContainerWeb() {
   return (
-    <Center className="bg-primary-500 dark:bg-primary-500 flex-1">
+    <Center
+      className="bg-background-950
+            dark:bg-background-0 flex-1"
+    >
       <Image
         alt="gluestack-ui Pro"
         resizeMode="contain"
@@ -238,7 +241,11 @@ function SideContainerWeb() {
 
 function MobileHeader() {
   return (
-    <VStack space="md" className="px-3 mt-4">
+    <VStack
+      space="md"
+      className="px-3 mt-4 bg-background-950
+            dark:bg-background-0"
+    >
       <HStack space="md" className="items-center">
         <StyledExpoRouterLink href="..">
           <Icon
@@ -268,7 +275,10 @@ const Main = () => {
       <Box className="md:hidden">
         <MobileHeader />
       </Box>
-      <Box className="px-4 md:px-8 md:border-l-0 md:border-r-0 md:border-b-0 dark:bg-background-800 py-8 flex-1 bg-background-0 justify-between border-l-8 border-r-8 border-b-0">
+      <Box
+        className="px-4 md:px-8  bg-background-0
+            dark:bg-background-50 py-8 flex-1 justify-between"
+      >
         <Heading className="mb-8 md:flex md:text-2xl hidden">
           Sign in to continue
         </Heading>

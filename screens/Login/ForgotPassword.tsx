@@ -32,17 +32,19 @@ type SignUpSchemaType = z.infer<typeof forgotPasswordSchema>;
 
 function Header() {
   return (
-    <HStack space="md" className='px-3 py-4 items-center'>
+    <HStack
+      space="md"
+      className="px-3 py-4 items-center bg-background-950
+            dark:bg-background-0"
+    >
       <StyledExpoRouterLink href="..">
         <Icon
           size="md"
           as={ArrowLeftIcon}
-          className='color-typography-50 dark:color-typography-950'
+          className="color-typography-50 dark:color-typography-950"
         />
       </StyledExpoRouterLink>
-      <Text
-        className='color-typography-50 text-lg dark:color-typography-50'
-      >
+      <Text className="color-typography-50 text-lg dark:color-typography-50">
         Forgot Password
       </Text>
     </HStack>
@@ -52,13 +54,14 @@ function Header() {
 function SideContainerWeb() {
   return (
     <Center
-      className='bg-background-0 dark:bg-background-800 md:bg-primary-500 md:dark:bg-primary-500 md:py-$48'
+      className="bg-background-950
+            dark:bg-background-0 md:py-$48 flex-1"
     >
       <Image
         resizeMode="contain"
         source={require('./assets/images/forgotPassword_web_dark.png')}
         alt="Alternate Text"
-        className='w-[200px] h-40'
+        className="w-[200px] h-40"
       />
     </Center>
   );
@@ -67,16 +70,17 @@ function SideContainerWeb() {
 function MobileScreenImage() {
   return (
     <Center
-      className='px-4 -mb-0.5 bg-background-0 dark:bg-background-800 md:py-48 md:px-12 md:bg-primary-500 md:dark:bg-primary-700'
+      className="px-4 -mb-0.5 bg-background-950
+            dark:bg-background-0 md:py-48 md:px-12 md:bg-primary-500 md:dark:bg-primary-700"
     >
       <Image
-        className='flex dark:hidden md:hidden md:dark:hidden h-40 w-48'
+        className="flex dark:hidden md:hidden md:dark:hidden h-40 w-48"
         source={require('./assets/images/forgotPassword_mobile_light.png')}
         resizeMode="contain"
         alignSelf="center"
       />
       <Image
-        className='h-40 w-48 hidden dark:flex md:hidden'
+        className="h-40 w-48 hidden dark:flex md:hidden"
         source={require('./assets/images/forgotPassword_mobile_dark.png')}
         resizeMode="contain"
         alignSelf="center"
@@ -123,37 +127,29 @@ export default function ForgotPassword() {
 
   return (
     <GuestLayout>
-      <VStack
-        className='bg-primary-500 md:flex-row dark:bg-background-900 flex-1'
-      >
-        <Box className='md:hidden'>
+      <VStack className="bg-primary-500 md:flex-row dark:bg-background-900 flex-1">
+        <Box className="md:hidden">
           <Header />
           <MobileScreenImage />
         </Box>
-        <Box className='md:flex hidden flex-1'>
+        <Box className="md:flex hidden flex-1">
           <SideContainerWeb />
         </Box>
         <Box
-          className='max-w-[508px] pt-0 pb-8 px-4 bg-background-0 flex-1 md:pt-8 md:px-8 dark:bg-background-800'
+          className="max-w-[508px] pt-0 pb-8 px-4 bg-background-0
+            dark:bg-background-50 flex-1 md:pt-8 md:px-8"
         >
-          <VStack
-            space="md"
-            className='items-center md:items-start'
-          >
-            <Heading
-              className='text-xl text-center md:text-left md:text-2xl'
-            >
+          <VStack space="md" className="items-center md:items-start">
+            <Heading className="text-xl text-center md:text-left md:text-2xl">
               Forgot Password?
             </Heading>
-            <Text
-              className='text-sm font-normal text-center md:text-left'
-            >
+            <Text className="text-sm font-normal text-center md:text-left">
               Not to worry! Enter email address associated with your account and
               we'll send a link to reset your password.
             </Text>
           </VStack>
           <FormControl
-            className='my-8'
+            className="my-8"
             isInvalid={(!!errors.email || isEmailFocused) && !!errors.email}
             isRequired={true}
           >
@@ -183,7 +179,7 @@ export default function ForgotPassword() {
                     onBlur={onBlur}
                     onSubmitEditing={handleKeyPress}
                     returnKeyType="done"
-                    className='text-sm'
+                    className="text-sm"
                   />
                 </Input>
               )}
@@ -196,7 +192,7 @@ export default function ForgotPassword() {
             </FormControlError>
           </FormControl>
           <Button variant="solid" size="lg" onPress={handleSubmit(onSubmit)}>
-            <ButtonText className='text-sm'>Send OTP</ButtonText>
+            <ButtonText className="text-sm">Send OTP</ButtonText>
           </Button>
         </Box>
       </VStack>

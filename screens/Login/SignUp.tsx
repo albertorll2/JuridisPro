@@ -59,13 +59,14 @@ type SignUpSchemaType = z.infer<typeof signUpSchema>;
 function SideContainerWeb() {
   return (
     <Center
-      className='bg-primary-500 flex-1 dark:bg-primary-500'
+      className="bg-background-950
+            dark:bg-background-0 flex-1"
     >
       <Image
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
-        className='h-10 w-80'
+        className="h-10 w-80"
       />
     </Center>
   );
@@ -73,27 +74,27 @@ function SideContainerWeb() {
 
 function MobileHeader() {
   return (
-    <VStack  space="md" className='px-3 mt-4 mb-5'>
-      <HStack space="md" className='items-center'>
+    <VStack
+      space="md"
+      className="px-3 mt-4 mb-5 bg-background-950
+            dark:bg-background-0"
+    >
+      <HStack space="md" className="items-center">
         <StyledExpoRouterLink href="..">
           <Icon
             as={ArrowLeftIcon}
-            className='color-typography-50 dark:typography-950'
+            className="color-typography-50 dark:color-typography-950"
           />
         </StyledExpoRouterLink>
-        <Text
-          className='text-lg color-typography-50 dark:color-typography-950'
-        >
+        <Text className="text-lg color-typography-50 dark:color-typography-950">
           Sign Up
         </Text>
       </HStack>
-      <VStack space="xs" className='ml-1 my-4'>
-        <Heading  className='color-typography-50 dark:color-typography-950'>
+      <VStack space="xs" className="ml-1 my-4">
+        <Heading className="color-typography-50 dark:color-typography-950">
           Welcome
         </Heading>
-        <Text
-          className='color-primary-300 text-lg dark:color-typography-300'
-        >
+        <Text className="color-primary-300 text-lg dark:color-typography-300">
           Sign up to continue
         </Text>
       </VStack>
@@ -340,36 +341,27 @@ const SignUpForm = () => {
 function SignUpFormComponent() {
   return (
     <>
-      <Box
-        className='md:hidden'
-      >
+      <Box className="md:hidden">
         <MobileHeader />
       </Box>
       <Box
-        className='flex-1 bg-background-0 md:px-8 md:border-b-0 md:border-l-0 md:border-r-0 dark:bg-background-800 px-4 py-8 justify-between  border-l-8 border-r-8'
+        className="px-4 md:px-8 py-8 flex-1 bg-background-0
+            dark:bg-background-50 justify-between"
       >
-        <Heading
-          className='hidden mb-8 md:flex md:text-2xl'
-        >
+        <Heading className="hidden mb-8 md:flex md:text-2xl">
           Sign up to continue
         </Heading>
         <SignUpForm />
-        <HStack space="md" className='my-4 items-center justify-center'>
-          <Divider
-            className='w-2/6 bg-background-200 dark:bg-background-700'
-          />
-          <Text
-            className='font-medium color-typography-400 dark:color-typography-300'
-          >
+        <HStack space="md" className="my-4 items-center justify-center">
+          <Divider className="w-2/6 bg-background-200 dark:bg-background-700" />
+          <Text className="font-medium color-typography-400 dark:color-typography-300">
             or
           </Text>
-          <Divider
-            className='w-2/6 bg-background-200 dark:bg-background-700'
-          />
+          <Divider className="w-2/6 bg-background-200 dark:bg-background-700" />
         </HStack>
         <HStack
           space="lg"
-          className='md:mt-4 mt-6 mb-9 items-center justify-center'
+          className="md:mt-4 mt-6 mb-9 items-center justify-center"
         >
           <Link href="">
             <Button action="secondary" variant="link" onPress={() => {}}>
@@ -378,21 +370,16 @@ function SignUpFormComponent() {
           </Link>
           <Link href="">
             <Button action="secondary" variant="link" onPress={() => {}}>
-              <ButtonIcon as={GoogleIcon}  className='size-4' />
+              <ButtonIcon as={GoogleIcon} className="size-4" />
             </Button>
           </Link>
         </HStack>
-        <HStack
-          space="xs"
-          className='items-center justify-center mt-auto'
-        >
-          <Text
-            className='text-sm color-typography-500 dark:color-typography-400'
-          >
+        <HStack space="xs" className="items-center justify-center mt-auto">
+          <Text className="text-sm color-typography-500 dark:color-typography-400">
             Already have an account?
           </Text>
           <StyledExpoRouterLink href="/login">
-            <LinkText  className='text-sm'>Sign In</LinkText>
+            <LinkText className="text-sm">Sign In</LinkText>
           </StyledExpoRouterLink>
         </HStack>
       </Box>

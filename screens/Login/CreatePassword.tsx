@@ -117,17 +117,19 @@ export default function CreatePassword() {
 
   function Header() {
     return (
-      <HStack space="md" className='px-3 my-4 items-center'>
+      <HStack
+        space="md"
+        className="px-3 my-4 items-center bg-background-950
+            dark:bg-background-0"
+      >
         <StyledExpoRouterLink href="..">
           <Icon
             size="md"
             as={ArrowLeftIcon}
-            className='color-typography-50 dark:color-typography-50'
+            className="color-typography-50 dark:color-typography-50"
           />
         </StyledExpoRouterLink>
-        <Text
-          className='color-typography-50 text-lg dark:color-typography-50'
-        >
+        <Text className="color-typography-50 text-lg dark:color-typography-50">
           Create Password
         </Text>
       </HStack>
@@ -153,10 +155,11 @@ export default function CreatePassword() {
   function WebSideContainer() {
     return (
       <Center
-        className='flex-1 bg-primary-500 dark:bg-primary-500'
+        className="flex-1 bg-background-950
+            dark:bg-background-0"
       >
         <Image
-          className='h-10 w-80'
+          className="h-10 w-80"
           alt="Gluestack-ui pro"
           resizeMode="contain"
           source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
@@ -166,14 +169,10 @@ export default function CreatePassword() {
   }
   return (
     <GuestLayout>
-      <Box
-        className='md:hidden'
-      >
+      <Box className="md:hidden">
         <Header />
       </Box>
-      <Box
-        className='flex-1 md:flex hidden'
-      >
+      <Box className="flex-1 md:flex hidden">
         <WebSideContainer />
       </Box>
       <ScrollView
@@ -181,19 +180,17 @@ export default function CreatePassword() {
           flexGrow: 1,
         }}
         style={{
-          flex:1
+          flex: 1,
         }}
         bounces={false}
       >
         <Box
-          className='bg-background-0 pt-8 pb-4 px-4 md:p-8 dark:bg-background-800'
+          className="bg-background-0
+            dark:bg-background-50 pt-8 pb-4 px-4 md:p-8"
         >
           <ScreenText />
-          <VStack
-            space="md"
-            className='mt-7 md:mt-8'
-          >
-            <Box  className='w-full md:w-80'>
+          <VStack space="md" className="mt-7 md:mt-8">
+            <Box className="w-full md:w-80">
               <FormControl isInvalid={!!errors.password} isRequired={true}>
                 <Controller
                   defaultValue=""
@@ -221,12 +218,10 @@ export default function CreatePassword() {
                         onSubmitEditing={handleKeyPress}
                         returnKeyType="done"
                         type={showPassword ? 'text' : 'password'}
-                        className='text-sm'
+                        className="text-sm"
                       />
-                      <InputSlot onPress={handleState} className='mr-2'>
-                        <InputIcon
-                          as={showPassword ? EyeIcon : EyeOffIcon}
-                        />
+                      <InputSlot onPress={handleState} className="mr-2">
+                        <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                       </InputSlot>
                     </Input>
                   )}
@@ -243,9 +238,7 @@ export default function CreatePassword() {
                 <FormControlHelper></FormControlHelper>
               </FormControl>
             </Box>
-            <Box
-              className='w-full md:w-80'
-            >
+            <Box className="w-full md:w-80">
               <FormControl
                 isInvalid={!!errors.confirmpassword}
                 isRequired={true}
@@ -276,9 +269,12 @@ export default function CreatePassword() {
                         onSubmitEditing={handleKeyPress}
                         returnKeyType="done"
                         type={showConfirmPassword ? 'text' : 'password'}
-                        className='text-sm'
+                        className="text-sm"
                       />
-                      <InputSlot onPress={handleConfirmPasswordState} className='mr-2'>
+                      <InputSlot
+                        onPress={handleConfirmPasswordState}
+                        className="mr-2"
+                      >
                         <InputIcon
                           as={showConfirmPassword ? EyeIcon : EyeOffIcon}
                         />
@@ -307,9 +303,9 @@ export default function CreatePassword() {
             variant="solid"
             size="lg"
             onPress={handleSubmit(onSubmit)}
-            className='mt-auto md:mt-40'
+            className="mt-auto md:mt-40"
           >
-            <ButtonText className='text-sm'>UPDATE PASSWORD</ButtonText>
+            <ButtonText className="text-sm">UPDATE PASSWORD</ButtonText>
           </Button>
         </Box>
       </ScrollView>

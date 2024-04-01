@@ -8,7 +8,12 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { useColorScheme } from 'nativewind';
+import { Pressable } from '@/components/ui/pressable';
+import { VStack } from '@/components/ui/vstack';
+import { Icon } from '@/components/ui/icon';
+import { ToggleLeftIcon, ToggleRightIcon } from 'lucide-react-native';
+
 // import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { GluestackUIProvider as NativewindProvider } from '@/components/ui/gluestack-ui-provider';
 
@@ -51,7 +56,7 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+  const { colorScheme, toggleColorScheme } = useColorScheme();
   return (
     <NativewindProvider mode={colorScheme}>
         <Stack>
