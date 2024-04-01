@@ -16,16 +16,16 @@ function ActionButtons() {
         action="primary"
         isDisabled={false}
         isFocusVisible={false}
-        className="hover:bg-background-100 hover:color-primary-500 bg-background-0"
+        className="hover:bg-background-800 hover:text-primary-500 bg-background-0"
       >
         <StyledExpoRouterLink href="/login" width="auto">
-          <ButtonText className="font-bold decoration-0 color-primary-500">
+          <ButtonText className="font-bold decoration-0 text-primary-500 ">
             LOGIN
           </ButtonText>
         </StyledExpoRouterLink>
       </Button>
       <Button
-        className="hover:bg-background-0 hover:color-primary-500 border-primary-0 my-4"
+        className="hover:bg-background-0 hover:text-primary-500 border-primary-0 my-4"
         size="md"
         variant="outline"
         action="primary"
@@ -33,7 +33,7 @@ function ActionButtons() {
         isFocusVisible={false}
       >
         <StyledExpoRouterLink href="/signup" width="auto">
-          <ButtonText className="decoration-0 color-typography-100">
+          <ButtonText className="decoration-0 text-typography-100">
             SIGN UP
           </ButtonText>
         </StyledExpoRouterLink>
@@ -44,16 +44,16 @@ function ActionButtons() {
 
 function HeaderLogo() {
   return (
-    <Box className='items-center justify-center'>
+    <Box className="items-center justify-center">
       <Image
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
-        className='md:hidden flex  sm:h-[40px] sm:w-[320px] md:h-[141px] md:w-[275px]'
+        className="md:hidden flex  sm:h-[40px] sm:w-[320px] md:h-[141px] md:w-[275px]"
       />
       <Image
         alt="gluestack-ui Pro"
-        className=' hidden md:flex sm:h-[40px] sm:w-[320px] md:h-[141px] md:w-[275px]'
+        className=" hidden md:flex sm:h-[40px] sm:w-[320px] md:h-[141px] md:w-[275px]"
         source={require('./assets/images/gluestackUiProLogo_mobile.png')}
       />
     </Box>

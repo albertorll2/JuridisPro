@@ -11,8 +11,7 @@ import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 // import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { GluestackUIProvider as NativewindProvider } from '@/components/ui/gluestack-ui-provider';
-import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@/gluestack-ui.config';
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,7 +54,6 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
   return (
     <NativewindProvider mode={colorScheme}>
-      <GluestackUIProvider config={config} colorMode={colorScheme}>
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -64,7 +62,6 @@ function RootLayoutNav() {
           <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
           <Stack.Screen name="create-password" options={{ headerShown: false }} />
         </Stack>
-      </GluestackUIProvider>
     </NativewindProvider>
   );
 }

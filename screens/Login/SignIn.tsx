@@ -314,7 +314,9 @@ const SignIn = () => {
       <Box className="flex-1 hidden md:flex">
         <SideContainerWeb />
       </Box>
-      <Main />
+      <Box className="flex-1">
+        <Main />
+      </Box>
     </GuestLayout>
   );
 };

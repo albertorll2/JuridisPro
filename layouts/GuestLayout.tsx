@@ -21,30 +21,23 @@ export default function GuestLayout(props: GuestLayoutProps) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <Box
-          className='h-full web:h-[100vh] overflow-hidden' 
-        >
+        <Box className="h-full web:h-[100vh] overflow-hidden">
           <StatusBar
             translucent
             backgroundColor="transparent"
             barStyle="light-content"
           />
-          <ScrollView 
+          <ScrollView
             contentContainerStyle={{
               alignItems: 'center',
               flexGrow: 1,
               justifyContent: 'center',
             }}
-            style={{
-              flex:1,
-              backgroundColor: theme==='dark'? backgroundDark900 : isMediumScreen ? primary900 : primary500,
-            }}
+            className="flex-1 dark:bg-background-900 md:dark:bg-primary-900 bg-primary-500"
             bounces={false}
           >
             {/* $max-w-$$containerWidth */}
-            <VStack
-              className='w-full flex-1 overflow-hidden md:max-w-screen-md md:flex-row md:rounded-xl md:flex-none'
-            >
+            <VStack className="w-full flex-1 overflow-hidden md:max-w-screen-md md:flex-row md:rounded-xl md:flex-none">
               {props.children}
             </VStack>
           </ScrollView>
