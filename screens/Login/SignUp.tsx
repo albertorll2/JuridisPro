@@ -52,7 +52,7 @@ import { styled } from '@gluestack-style/react';
 const StyledImage = styled(Image, {
   props: {
     style: {
-      height: 40,
+      height: 320,
       width: 320,
     },
   },
@@ -101,7 +101,7 @@ function SideContainerWeb() {
         w="$80"
         alt="gluestack-ui Pro"
         resizeMode="contain"
-        source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+        source={require('./assets/images/JuridisPro.png')}
       />
     </Center>
   );
@@ -124,12 +124,12 @@ function MobileHeader() {
           sx={{ _dark: { color: '$textDark50' } }}
           fontSize="$lg"
         >
-          Sign Up
+          Registrate
         </Text>
       </HStack>
       <VStack space="xs" ml="$1" my="$4">
         <Heading color="$textLight50" sx={{ _dark: { color: '$textDark50' } }}>
-          Welcome
+          Bienvenido
         </Heading>
         <Text
           color="$primary300"
@@ -140,7 +140,7 @@ function MobileHeader() {
             },
           }}
         >
-          Sign up to continue
+          Registrate para continuar
         </Text>
       </VStack>
     </VStack>
@@ -168,7 +168,7 @@ const SignUpForm = () => {
         render: ({ id }) => {
           return (
             <Toast nativeID={id} variant="accent" action="success">
-              <ToastTitle>Signed up successfully</ToastTitle>
+              <ToastTitle>Registro Completo!!</ToastTitle>
             </Toast>
           );
         },
@@ -180,7 +180,7 @@ const SignUpForm = () => {
         render: ({ id }) => {
           return (
             <Toast nativeID={id} action="error">
-              <ToastTitle>Passwords do not match</ToastTitle>
+              <ToastTitle>Las contraseñas no coinciden</ToastTitle>
             </Toast>
           );
         },
@@ -389,7 +389,7 @@ const SignUpForm = () => {
                     },
                   }}
                 >
-                  Privacy Policy
+                  Politica de Privacidad
                 </LinkText>
               </Link>
             </CheckboxLabel>
@@ -402,7 +402,7 @@ const SignUpForm = () => {
         size="lg"
         onPress={handleSubmit(onSubmit)}
       >
-        <ButtonText fontSize="$sm">SIGN UP</ButtonText>
+        <ButtonText fontSize="$sm">REGISTRARSE</ButtonText>
       </Button>
     </>
   );
@@ -537,6 +537,7 @@ export default function SignUp() {
         display="none"
       >
         <SideContainerWeb />
+        <Text textAlign={'center'} color={'white'} size={"5xl"} >JuridisPro</Text>
       </Box>
       <Box flex={1}>
         <SignUpFormComponent />

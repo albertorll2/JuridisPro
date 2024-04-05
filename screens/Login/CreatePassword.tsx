@@ -53,23 +53,23 @@ const StyledImage = styled(Image, {
 const createPasswordSchema = z.object({
   password: z
     .string()
-    .min(6, 'Must be at least 8 characters in length')
-    .regex(new RegExp('.*[A-Z].*'), 'One uppercase character')
-    .regex(new RegExp('.*[a-z].*'), 'One lowercase character')
-    .regex(new RegExp('.*\\d.*'), 'One number')
+    .min(6, 'Minimo 8 caracteres de longitud')
+    .regex(new RegExp('.*[A-Z].*'), 'Una mayúscula')
+    .regex(new RegExp('.*[a-z].*'), 'Una minúscula')
+    .regex(new RegExp('.*\\d.*'), 'Un número')
     .regex(
       new RegExp('.*[`~<>?,./!@#$%^&*()\\-_+="\'|{}\\[\\];:\\\\].*'),
-      'One special character'
+      'Un caracter especial'
     ),
   confirmpassword: z
     .string()
-    .min(6, 'Must be at least 8 characters in length')
-    .regex(new RegExp('.*[A-Z].*'), 'One uppercase character')
-    .regex(new RegExp('.*[a-z].*'), 'One lowercase character')
-    .regex(new RegExp('.*\\d.*'), 'One number')
+    .min(6, 'Minimo 8 caracteres de longitud')
+    .regex(new RegExp('.*[A-Z].*'), 'Una mayúscula')
+    .regex(new RegExp('.*[a-z].*'), 'Una minúscula')
+    .regex(new RegExp('.*\\d.*'), 'Un número')
     .regex(
       new RegExp('.*[`~<>?,./!@#$%^&*()\\-_+="\'|{}\\[\\];:\\\\].*'),
-      'One special character'
+      'Un caracter especial'
     ),
 });
 
@@ -94,7 +94,7 @@ export default function CreatePassword() {
         render: ({ id }) => {
           return (
             <Toast nativeID={id} variant="accent" action="success">
-              <ToastTitle>Password updated successfully</ToastTitle>
+              <ToastTitle>Contraseña actualizada con éxito</ToastTitle>
             </Toast>
           );
         },
@@ -110,7 +110,7 @@ export default function CreatePassword() {
         render: ({ id }) => {
           return (
             <Toast nativeID={id} variant="accent" action="error">
-              <ToastTitle>Passwords do not match</ToastTitle>
+              <ToastTitle>Las contraseñas no coinciden</ToastTitle>
             </Toast>
           );
         },
@@ -169,11 +169,10 @@ export default function CreatePassword() {
             '@md': { fontSize: '$2xl' },
           }}
         >
-          Create new password
+          Crear Contraseña
         </Heading>
         <Text fontSize="$sm">
-          Your new password must be different from previous used passwords and
-          must be of at least 8 characters.
+          Tu contraseña debe tener al menos 8 caracteres de longitud, una letra mayúscula, una letra minúscula, un número y un carácter especial.
         </Text>
       </VStack>
     );
@@ -289,7 +288,7 @@ export default function CreatePassword() {
                   </FormControlErrorText>
                 </FormControlError>
                 <FormControlHelperText>
-                  <Text size="xs">Must be at least 8 characters</Text>
+                  <Text size="xs">8 caracteres minimo</Text>
                 </FormControlHelperText>
                 <FormControlHelper></FormControlHelper>
               </FormControl>
@@ -349,7 +348,7 @@ export default function CreatePassword() {
                   </FormControlErrorText>
                 </FormControlError>
                 <FormControlHelperText>
-                  <Text size="xs"> Both Password must match</Text>
+                  <Text size="xs"> Las contraseñas deben coincidir</Text>
                 </FormControlHelperText>
                 <FormControlErrorText>
                   <Text size="xs">{errors.confirmpassword?.message}</Text>
@@ -365,7 +364,7 @@ export default function CreatePassword() {
             sx={{ '@md': { mt: '$40' } }}
             onPress={handleSubmit(onSubmit)}
           >
-            <ButtonText fontSize="$sm">UPDATE PASSWORD</ButtonText>
+            <ButtonText fontSize="$sm"> Actualizar Contraseña</ButtonText>
           </Button>
         </Box>
       </ScrollView>

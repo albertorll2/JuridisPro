@@ -6,6 +6,7 @@ import {
   Image,
   Center,
   ButtonText,
+  Text,
 } from '@gluestack-ui/themed';
 
 import GuestLayout from '../../layouts/GuestLayout';
@@ -25,7 +26,7 @@ const StyledImage = styled(Image, {
   '@md': {
     props: {
       style: {
-        height: 141,
+        height: 300,
         width: 275,
       },
     },
@@ -63,7 +64,7 @@ function ActionButtons() {
             textDecorationLine="none"
             color="$primary500"
           >
-            LOGIN
+            INICIAR SESION
           </ButtonText>
         </StyledExpoRouterLink>
       </Button>
@@ -87,7 +88,7 @@ function ActionButtons() {
       >
         <StyledExpoRouterLink href="/signup">
           <ButtonText textDecorationLine="none" color="$textLight50">
-            SIGN UP
+            REGISTRARSE
           </ButtonText>
         </StyledExpoRouterLink>
       </Button>
@@ -100,8 +101,8 @@ function HeaderLogo() {
     <Box alignItems="center" justifyContent="center">
       <StyledImage
         alt="gluestack-ui Pro"
-        resizeMode="contain"
-        source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+        resizeMode='contain'
+        source={require('./assets/images/JuridisPro.png')}
         sx={{
           '@md': {
             display: 'flex',
@@ -116,10 +117,12 @@ function HeaderLogo() {
             display: 'none',
           },
         }}
+        resizeMode='contain'
         alt="gluestack-ui Pro"
         display="flex"
-        source={require('./assets/images/gluestackUiProLogo_mobile.png')}
+        source={require('./assets/images/JuridisPro.png')}
       />
+      <Text color={'white'} size={"5xl"} >JuridisPro</Text>
     </Box>
   );
 }

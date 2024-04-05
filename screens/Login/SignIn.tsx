@@ -49,7 +49,7 @@ import { styled } from '@gluestack-style/react';
 const StyledImage = styled(Image, {
   props: {
     style: {
-      height: 40,
+      height: 320,
       width: 320,
     },
   },
@@ -91,7 +91,7 @@ const SignInForm = () => {
       render: ({ id }) => {
         return (
           <Toast nativeID={id} variant="accent" action="success">
-            <ToastTitle>Signed in successfully</ToastTitle>
+            <ToastTitle>Inicio de sesion exitoso</ToastTitle>
           </Toast>
         );
       },
@@ -138,7 +138,7 @@ const SignInForm = () => {
               <Input>
                 <InputField
                   fontSize="$sm"
-                  placeholder="Email"
+                  placeholder="Correo electronico"
                   type="text"
                   value={value}
                   onChangeText={onChange}
@@ -178,7 +178,7 @@ const SignInForm = () => {
               <Input>
                 <InputField
                   fontSize="$sm"
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -203,7 +203,7 @@ const SignInForm = () => {
         </FormControl>
       </VStack>
       <StyledExpoRouterLink ml="auto" href="/forgot-password">
-        <LinkText fontSize="$xs">Forgot password?</LinkText>
+        <LinkText fontSize="$xs">Olvidaste tu contraseña?</LinkText>
       </StyledExpoRouterLink>
       <Controller
         name="rememberme"
@@ -221,7 +221,7 @@ const SignInForm = () => {
             <CheckboxIndicator mr="$2">
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
-            <CheckboxLabel>Remember me and keep me logged in</CheckboxLabel>
+            <CheckboxLabel>Recuerda mi informacion y mantener la sesion abierta</CheckboxLabel>
           </Checkbox>
         )}
       />
@@ -231,7 +231,7 @@ const SignInForm = () => {
         mt="$5"
         onPress={handleSubmit(onSubmit)}
       >
-        <ButtonText fontSize="$sm"> SIGN IN</ButtonText>
+        <ButtonText fontSize="$sm"> INICIAR SESION</ButtonText>
       </Button>
     </>
   );
@@ -247,11 +247,11 @@ function SideContainerWeb() {
       }}
     >
       <StyledImage
-        w="$80"
-        h="$10"
-        alt="gluestack-ui Pro"
+        w="$180"
+        h="$180"
+        alt="JuridisPro"
         resizeMode="contain"
-        source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
+        source={require('./assets/images/JuridisPro.png')}
       />
     </Center>
   );
@@ -278,7 +278,7 @@ function MobileHeader() {
       </HStack>
       <VStack space="xs" ml="$1" my="$4">
         <Heading color="$textLight50" sx={{ _dark: { color: '$textDark50' } }}>
-          Welcome back
+          Bienvenido
         </Heading>
         <Text
           fontSize="$md"
@@ -288,7 +288,7 @@ function MobileHeader() {
             _dark: { color: '$textDark400' },
           }}
         >
-          Sign in to continue
+          Inicia sesion para continuar
         </Text>
       </VStack>
     </VStack>
@@ -327,7 +327,7 @@ const Main = () => {
             '@md': { display: 'flex', fontSize: '$2xl' },
           }}
         >
-          Sign in to continue
+          Inicia sesion para continuar
         </Heading>
         <SignInForm />
         <HStack my="$4" space="md" alignItems="center" justifyContent="center">
@@ -383,10 +383,10 @@ const Main = () => {
             fontSize="$sm"
             sx={{ _dark: { color: '$textDark400' } }}
           >
-            Don't have an account?
+            No tienes cuenta?
           </Text>
           <StyledExpoRouterLink href="/signup">
-            <LinkText fontSize="$sm">Sign up</LinkText>
+            <LinkText fontSize="$sm">Registrate</LinkText>
           </StyledExpoRouterLink>
         </HStack>
       </Box>
@@ -399,6 +399,7 @@ const SignIn = () => {
     <GuestLayout>
       <Box display="none" sx={{ '@md': { display: 'flex' } }} flex={1}>
         <SideContainerWeb />
+        <Text textAlign={'center'} color={'white'} size={"5xl"} >JuridisPro</Text>
       </Box>
       <Main />
     </GuestLayout>
